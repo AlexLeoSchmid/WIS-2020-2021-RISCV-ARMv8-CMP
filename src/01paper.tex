@@ -101,6 +101,14 @@ keyword1, keyowrd2
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
 	\subsection{Complexity}
+	To compare the both \glspl{ISA} (RISC-V and ARMv8), which are the main components in this paper. I will base the argumentation on the amount of Instructions, the different modes of addressing and the complexitiy (how many different things are claryfied) in the manuel of each \gls{ISA}. 
+ARM: - 64 bit registers or 32-bit registers. 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
+	- supports more than only one Instruction set (A64, A32, T32)\cite{ArmManual}
+	- AARCH64 (31 registers, ... supports only A64 instruction set) \cite{ArmManual}S. 37-38 compare to 64 bit version of RISC-V if there is one??
+	- Aarch32 (A32 and T32 two instruction sets) \cite{ArmManual} S. 37- 38 compare to 32-bit version of RISC-V if there is one??
+	- A bit of system registers, supported dataTypes, .. S. 39, 40fff.
+	- Instructions starts on \cite{ArmManual} S. 222
+	- Processor States \cite{ArmManual} S. 107f
 	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance}
 	What are the differences in code size? Can we accurately compare the execution speed of both ISAs?
@@ -125,133 +133,9 @@ keyword1, keyowrd2
 	\subsection{Accuracy of results}
 	\subsection{Future directions}
 
-% ----------------------------------------------------------------------------------
-% Kleine Einführung in LaTeX-Elemente
-% ----------------------------------------------------------------------------------
-\section*{Tipps für Latex}
-Dieser Abschnitt beinhaltet lediglich einige Informationen über \LaTeX-Distributionen, Editoren und \LaTeX-Elemente, die Ihnen beim Einstieg in das \LaTeX-Textsatzsystem helfen sollen.
-
-\subsection{\LaTeX-Distributionen nach Betriebssystemen}
-
-\subsubsection{\LaTeX-Distributionen}
-Folgende Haupt-\LaTeX-Distributionen stehen Ihnen zur Verfügung:
-\begin{itemize}
-  \item Windows:\quad \texttt{ProText}\quad Webseite:\quad\url{https://www.tug.org/protext/}    
-  \item Windows:\quad \texttt{MiKTeX}\quad Webseite:\quad\url{http://www.miktex.org}
-  \item Linux/Unix:\quad \texttt{TeX Live}\quad Webseite:\quad\url{http://tug.org/texlive/}
-  \item Mac OS:\quad \texttt{MacTeX}\quad Webseite:\quad\url{http://www.tug.org/mactex/}
-\end{itemize}
-Empfehlung: Nehmen Sie ProText und installieren Sie es in der Vollinstallation. ProText ist eine Art 'fullbundle' von MiKTeX. Die Vollinstallation ist zwar etwas groß und dauert etwas, aber dafür gibt es kein Problem mit evtl fehlenden Paketen.
-Diese Vorlage wurde getestet mit folgendender Version:
-ProTeXt-3.1.9-121317.exe \\ 
-\url{http://ftp.math.utah.edu/pub/tex/historic/systems/protext/2018-3.1.9/} \\
-Diese Version befindet sich auch auf dem Laufwerk der Labor-PCs:\\
-\verb|L:\DT\Professoren\Muench\tools| \\  
-Oder unter folgendem Link befinden (wenn Sie sich über VPN einwählen): \\
-\verb|\\rfhinffs1.hs-regensburg.de\labor\DT|\\ \verb|\Professoren\Muench\tools|\\
-Verwenden Sie bei Problemen die oben genannte Version.
-
-\subsubsection{\LaTeX-Editoren}
-Auf folgenden Webseiten können Sie einige hilfreiche \LaTeX-Editoren finden:
-\begin{itemize}
-  \item Windows/Linux/Mac OS: \url{http://www.xm1math.net/texmaker/}
-  \item Windiws: \url{http://www.texniccenter.org/}
-  \item Mac OS: \url{http://pages.uoregon.edu/koch/texshop/}
-\end{itemize}
-
-Falls bei den oben genannten Editoren kein passender vorhanden war, findet sich auf Wikipedia eine Zusammenstellung vieler weiterer \LaTeX-Editoren:\\
-\url{https://en.wikipedia.org/wiki/Comparison_of_TeX_editors}
-
-Für die PDF-Anzeige empfiehlt sich SumatraPDF: \\ 
-\url{https://www.sumatrapdfreader.org/free-pdf-reader.html}. \\
-Empfehlung: SumatraPDF lockt die Datei nicht wie die meister PDF-Reader. Somit können sich kontinuierliche Updates machen und müssen die PDF-Datei nicht immer schließen und wieder öffen.
-
-
-
-\subsection{Bilder}
-Zum Einfügen eines Bildes, siehe Fig. \ref{fig:reversi01}, wird  der Befehl \texttt{$\backslash$includegraphics} genutzt.
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/gamefield01.png}
-	\caption[Spielfeld 01]{Unbespieltes Spielfeld}
-	\label{fig:reversi01}
-\end{figure}
-
-Nachdem das Spielt gestartet wurde und beide Spielphasen durchlaufen wurden, siegt schließlich der Spieler mit der Farbe rot. Fig. \ref{fig:reversi02} zeigt ...
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/gamefield02.png}
-	\caption[Spielfeld 02]{Finales Spielfeld}
-	\label{fig:reversi02}
-\end{figure}
-
-
-\subsection{Tabellen}
-In diesem Abschnitt wird eine Tabelle (siehe Tabelle \ref{tab:beispiel}) dargestellt.
-
-\begin{table}[!h]
-	\centering
-  \caption{Beispieltabelle}
-	\label{tab:beispiel}
-	\begin{tabular}{|l|l|l|}
-		\hline
-		\textbf{Name} & \textbf{Name} & \textbf{Name}\\
-		\hline
-		1 & 2 & 3\\
-		\hline
-		4 & 5 & 6\\
-		\hline
-		7 & 8 & 9\\
-		\hline
-	\end{tabular}	
-\end{table}
-
-
-\subsection{Auflistung}
-Für Auflistungen wird die \texttt{enumerate}- oder \texttt{itemize}-Umgebung genutzt.
-
-\begin{itemize}
-	\item Nur
-	\item ein
-	\item Beispiel.
-\end{itemize}
-
-
-\subsection{Gleichungen}
-Formatierung von Formeln:
-
-\begin{itemize}
-  \item Formelzeichen sind in kursiv zu setzen
-  \item Zahlen, Einheiten und Funktionsnamen sind in normaler Schriftart zu setzen (nicht kursiv)
-  \item Häufig wird fälschlicherweise das Symbol * als Multiplikationszeichen verwendet
-  \item Zwischen Zahl und Einheit ist ein Leerzeichen zu setzen
-\end{itemize}
-
-\gls{FM} is a wireless transmission system patent-registered by Edwin H. Armstrong in 1933. It is still widespread in the area of audio broadcasting today. In case of the frequency modulation the amplitude of the desired message signal varies the frequency (the argument) of the sinusoidal carrier. The general \gls{FM} oscillation is formulated with 
-\begin{equation}
-u_{\textrm{FM}}(t)= a_0 \cos(\Psi(t)+\varphi_0) 
-\label{eqn:fmosc}
-\end{equation}
-
-To simplify matters, only an one-tone modulation signal is considered to characterize the spectrum of \gls{FM} -signals at first
-\begin{multline}
-u_{\textrm{FM}}(t)=\hat u_T \cdot [J_0(\eta)\cos\omega_Tt +
-\\ \sum_{n=1}^{+\infty} J_n(\eta) \cdot (\cos[(\omega_T+n\omega_1)t]+
-\\(-1)^n \cos[(\omega_T-n\omega_1)t])] 
-\\ \ \mbox{with Bessel functions:} 
-\\ \ J_n(\eta)= \frac{(-1)^n}{\pi} \int_0^{\pi} e^{j\eta\sin x} \cdot \cos(nx) dx 
-\end{multline}
-
-\subsection{Verwendung von Abkürzungen}
-Die Abkürzungen werden in glossary.tex definiert. Die Abkürzungen können so verwendet werden:
-Beim ersten Mal der Verwendung wird die Abkürzung ausgeschrieben z.B. \gls{TCP}. Beim zweiten Mal oder folgenden Malen wird nur noch die Abkürzung verwendet z.B. \gls{TCP}.
-Aber setzen Sie Abkürzungen sparsam ein.
-
 \subsection{Literaturverzeichnis}
 Die Quellen befinden sich in der Datei \textit{biblography.bib}. 
-Alle Literaturangaben müssen im Text referenziert werden. Die höchstwertigen Quellen stellen dabei Zeitschriftenartikel \cite{50years}, gefolgt von Konferenzbeiträgen \cite{ArmManual}, Patenten\cite{hennessy2012computer}, Standards \cite{WisconsinMadison2016}, Fachbüchern \cite{drechsler2020enhanced},  Datenblättern \cite{Asanovic2016}, Techreports und White-Papern \cite{IEEE2018} und zuletzt Onlinequellen \cite{Dirvin2019} dar \cite{Bandic2019}.
+Meine Quellen sind:l \cite{50years}, \cite{ArmManual}, \cite{hennessy2012computer}, \cite{WisconsinMadison2016} \cite{drechsler2020enhanced}, \cite{Asanovic2016}, \cite{IEEE2018} \cite{Dirvin2019}, \cite{Bandic2019}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
