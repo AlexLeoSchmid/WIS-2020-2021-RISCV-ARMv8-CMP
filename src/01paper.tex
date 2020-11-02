@@ -23,7 +23,7 @@
 \newglossary[slg]{symbolslist}{syi}{syg}{Symbols}
 \renewcommand{\firstacronymfont}[1]{\emph{#1}}
 \renewcommand*{\glspostdescription}{}	% Punkt am Ende jeder Beschreibung entfernen
-\renewcommand*{\acrnameformat}[2]{#2 (\acronymfont{#1})}	% Langform der Akronyme
+%renewcommand*{\acrnameformat}[2]{#2 (\acronymfont{#1})}	% Langform der Akronyme
 \makeglossaries
 \date{\today}
 \input{glossary}
@@ -100,6 +100,19 @@ keyword1, keyowrd2
 
 \section{Concept and Methods}
 \label{ref:concept}
+In order to determine whether RISC-V will gain a significant market share in the following years, it is useful to compare the two \glspl{ISA}
+across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design.
+
+The first of these criteria is the \gls{ISA}'s business model. \glspl{ISA} are often protected by patents that prohibit anyone not licensed
+by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011} Whether these patents exist and the licensing terms
+are an important factor when deciding which \gls{ISA} to use.
+
+The \gls{ISA}'s complexity refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
+time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
+increasing a \gls{CPU}'s development cost.
+
+TODO Performance: Dope source \cite{Blem2013}
+
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
 	\subsection{Complexity}
