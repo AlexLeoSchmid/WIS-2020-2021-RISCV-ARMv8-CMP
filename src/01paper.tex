@@ -111,7 +111,30 @@ The \gls{ISA}'s complexity refers to the amount of effort required to implement 
 time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
 increasing a \gls{CPU}'s development cost.
 
-TODO Performance: Dope source \cite{Blem2013}
+A \gls{CPU}'s performance can be evaluated under multiple aspects, including the rate of instructions, the rate of floating point operations or
+the speed at which the CPU executes a given program. Efficiency considerations, such as the code size of a given program when compiled to the \gls{CPU}'s
+instruction set or the amount of power the \gls{CPU} consumes when executing a given program are closely related to performance and shall, for the
+purposes of this paper, be grouped under performance.
+
+A program's code size is greatly influenced by the \gls{ISA}, since the instruction set and the compiler used are the only two factors that influence
+code size. As such, the code size is an important factor to consider when choosing which \gls{ISA} to implement for a new processor design, especially
+for microcontrollers that are usually very constrained in the size of their program memory.
+For the other performance aspects, it is debatable to which extent they are influenced by the \gls{CPU}'s instruction set as opposed
+to the concrete implementation of the CPU. \cite{Blem2013} \cite{Akram2017}
+
+\glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}. These usually allow
+faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications,
+\gls{AES} extensions that optimize cryptography or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory.
+Having a small base instruction set with many fine grained extensions improves the flexibility of the \gls{ISA}, allowing \glspl{CPU} to be optimized for specific
+use cases, increasing performance and efficiency for those use cases. \gls{ISA} extensions do however pose a disadvantage when distributing precompiled software
+to end users, as a piece of software that uses a certain \gls{ISA} extension can't be executed on \glspl{CPU} that don't implement that extension, potentially
+increasing the number of different versions of that software that need to be distributed.
+
+An \gls{ISA}'s ecosystem refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
+When developing a new \gls{CPU} it is preferrable to use an \gls{ISA} with a large ecosystem, in order to maximize the amount of software
+that can run of that \gls{CPU}. This is especially important in consumer desktop and mobile devices where a large variety of software is to be executed,
+but less important in embedded applications, where the software running on a microcontroller is specifically developed for that application and microcontroller
+only.
 
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
