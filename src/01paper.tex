@@ -32,44 +32,7 @@
         
 \begin{document}
 
-\title{Paper Title *TODO edit*}
-
-\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
-\IEEEauthorblockA{\textit{Faculity of Computer Science and Mathematics} \\
-\textit{OTH Regensburg}\\
-Regensburg, Germany \\
-name.surname@st.oth-regensburg.de}
-%\and
-%\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
-%\and
-%\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
-%\and
-%\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
-%\and
-%\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
-%\and
-%\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
-}
+\title{ARMv8 advantages and disadvantages to RISC-V}
 
 \maketitle
 
@@ -101,14 +64,41 @@ keyword1, keyowrd2
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
 	\subsection{Complexity}
+	Risc-V and ARMv8 are both \gls{RISC} based architectures and copmared to \gls{CISC} they are much less complex. \gls{RISC} machines are having a lot of charactaristics, which are not necessary to be completely implemented, but they can leed to a few advantages like an simpler control unit and faster decode, both because of the less instructions and addressing modes. \cite{George1990}\\
+	To compare the complexity of the both \gls{RISC} \gls{ISA} it is important to take a look into the RISC specific features and compare them in flexibility, amount and implementation.
+	\subsubsection{Instruction sets}
+	While the ARMv8 is clearly defined in relation to the instruction set, RISC-V is there much more variable. In RISC-V the only necessary Instruction set is the Integer instruction set. Those base integer instructions cannot be redened, only extended by more optional instruction-sets. Additional to operations for the base Integer Instruction Set, completely different extensions are available.
+	\begin{description}
+	\item[M]	Extension for Integer Multiplication and Division
+	\item[A]	Extension for Atomic Instructions
+	\item[F]	Extension for Single-Precision Floating-Point
+	\item[D]	Extension for Double-Precision Floating-Point
+	\item[Q]	Extension for Quad-Precision Floating-Point
+	\item[L]	Extension for Decimal Floating-Point
+	\item[C] 	Extension for Compressed Instructions
+	\item[V]	Extension for Vector Operations
+	\item[B]	Extension for Bit Manipulation
+	\item[T]	Extension for Transactional Memory
+	\item[P]	Extension for Packet-SIMD Instructions
+	\end{description}
+The added alphabetical characters are defining the used instruction set with all his implemented extension. While an ''M'' marks the architecture to be able to multiply the basic representation of on integer an extension like ''F'' or ''V'' makes the architecture undestanding a completely new number representation. This makes the RISC-V architecture only as complex as necessary because all the gratuitous instructions are not implemented. \cite{Asanovic2016} \\
+ARM insteed is defining the ARMv8 architecture in a completely different way. The ARMv8 supports also those extensions which are mentioned above but alread in the basic version, which is also called v8.0. To build a more complex CPU the ARMv8 also provides extensions like ARMV8.1, ... , ARMv8.6 plus a few optional extensions.  Almost all the optional extensions of RISC-V are covered by the basic v8.0, which makes the ARMv8 only from the instructions set of view as complex as a fully extended RISC-V architecture. All those additional extensions like v8.1 etc makes the architecture much more complex than the RISC-V full extended one. \cite{ArmManual} \\
+
+\subsubsection{Instruction set implemtations}
+Additonal to the basic instruction sets in the chapter above the different \gls{ISA} are able to implement those basic or extension instructions in different ways. Again the start will be done by the RISC-V architecture. This architecture is able to implement the instruction sets in 3 different versions a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
+While for the 32-bit and the 64-bit implementations are again multiple subversions available, RV32E, RV32G/RV64G, the RV128I is the only 128-bit implementation so far. The lets say default version the RV32I implements 31 integer registers, the RV32E instead implements only 15 integer register. The subversion RV32G/RV64G is less a one version of implementation than a stable release. The RV32G/RV64G is not defining registers or instruction sets in its one way, it is combining a basic \gls{ISA} plus different selected standard extensions (IMAFD). \cite{Asanovic2016} \\
+
+Also ARMv8 has, as aspected, different implementations, as well. While RISC-V is defining the implementations based on a number with the extensions, which are implemented, ARMv8 does it in a different way, because there are all the standard extensions already in the basic version included.
+ARMv8 provides 3 different implementations A64, A32 and T32. As mentioned A64 is the 64-bit version and A32, T32  both 32-bit versions.
+AARCH64 and AARCH32 are two different execution states in ARM (AARCH64 for 64-bit and AARCH32 for 32-bit), which are supporting the A64 in AARCH64 or A32/T32 in AARCH32.
+
+Write some stuff comparing machine-level and supervisor level \cite{AndrewWaterman} with 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
+
 	To compare the both \glspl{ISA} (RISC-V and ARMv8), which are the main components in this paper. I will base the argumentation on the amount of Instructions, the different modes of addressing and the complexitiy (how many different things are claryfied) in the manuel of each \gls{ISA}. 
-ARM: - 64 bit registers or 32-bit registers. 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
-	- supports more than only one Instruction set (A64, A32, T32)\cite{ArmManual}
-	- AARCH64 (31 registers, ... supports only A64 instruction set) \cite{ArmManual}S. 37-38 compare to 64 bit version of RISC-V if there is one??
-	- Aarch32 (A32 and T32 two instruction sets) \cite{ArmManual} S. 37- 38 compare to 32-bit version of RISC-V if there is one??
-	- A bit of system registers, supported dataTypes, .. S. 39, 40fff.
+	Only by counting the pages of the ARM manule (xxx) compared with the pages of the RISC-V manuel (xxx) we can assume that ARM is much more complex than RISC-V. By comparing 
 	- Instructions starts on \cite{ArmManual} S. 222
-	- Processor States \cite{ArmManual} S. 107f
+
+
 	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance}
 	What are the differences in code size? Can we accurately compare the execution speed of both ISAs?
