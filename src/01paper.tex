@@ -87,14 +87,17 @@ ARM insteed is defining the ARMv8 architecture in a completely different way. Th
 \subsubsection{Instruction set implemtations}
 Additonal to the basic instruction sets in the chapter above the different \gls{ISA} are able to implement those basic or extension instructions in different ways. Again the start will be done by the RISC-V architecture. This architecture is able to implement the instruction sets in 3 different versions a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
 While for the 32-bit and the 64-bit implementations are again multiple subversions available, RV32E, RV32G/RV64G, the RV128I is the only 128-bit implementation so far. The lets say default version the RV32I implements 31 integer registers, the RV32E instead implements only 15 integer register. The subversion RV32G/RV64G is less a one version of implementation than a stable release. The RV32G/RV64G is not defining registers or instruction sets in its one way, it is combining a basic \gls{ISA} plus different selected standard extensions (IMAFD). \cite{Asanovic2016} \\
-
 Also ARMv8 has, as aspected, different implementations, as well. While RISC-V is defining the implementations based on a number with the extensions, which are implemented, ARMv8 does it in a different way, because there are all the standard extensions already in the basic version included.
 ARMv8 provides 3 different implementations A64, A32 and T32. As mentioned A64 is the 64-bit version and A32, T32  both 32-bit versions.
-AARCH64 and AARCH32 are two different execution states in ARM (AARCH64 for 64-bit and AARCH32 for 32-bit), which are supporting the A64 in AARCH64 or A32/T32 in AARCH32.
+AARCH64 and AARCH32 are two different execution states in ARM (AARCH64 for 64-bit and AARCH32 for 32-bit), which are supporting the A64 in AARCH64 or A32/T32 in AARCH32.\cite{ArmManual}\\
 
 Write some stuff comparing machine-level and supervisor level \cite{AndrewWaterman} with 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
 
-	To compare the both \glspl{ISA} (RISC-V and ARMv8), which are the main components in this paper. I will base the argumentation on the amount of Instructions, the different modes of addressing and the complexitiy (how many different things are claryfied) in the manuel of each \gls{ISA}. 
+\subsubsection{registers and access}
+%% godbolt.org
+%% basic comparing between basic instructions like load, ...
+
+	To compare the both \glspl{ISA} (RISC-V and ARMv8), which are the main components in this paper. I will base the argumentation on the amount of Instructions, the different modes 		of addressing and the complexitiy (how many different things are claryfied) in the manuel of each \gls{ISA}. 
 	Only by counting the pages of the ARM manule (xxx) compared with the pages of the RISC-V manuel (xxx) we can assume that ARM is much more complex than RISC-V. By comparing 
 	- Instructions starts on \cite{ArmManual} S. 222
 
