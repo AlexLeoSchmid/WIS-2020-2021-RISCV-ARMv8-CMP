@@ -141,6 +141,18 @@ only.
 
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
+
+	When taking a look at the business model of the two rivaling \glspl{ISA} one will detect two substantially different approaches. While ARM takes the traditional approach of licensing its intellectual property to semiconductor companies, RISC-V stands out with the completley different way of publishing its \gls{ISA} in an open source manner. This includes giving away their \gls{ISA} definition for free, which raises the standard questions concerning open source material: How is it financed?, How will it be sustained in the future?, What are the advantages? and so on.
+
+	But lets start at the classic business model: ARM sells its \glspl{ISA} in various licensing models. \cite{ARMLC} These are staggerd in multiple levels of access. The 'Desing Start' level includes free access to the \gls{ISA} Defintion of the simplest ARM Chips Cortex-M0 and Cortex-M3 aswell as a fitting toolchain and processor models. For a fee between \$0 and \$75K you can get the \gls{ISA} of the Cortex-A5 aswell as the permission for 'single use' chip production. This means you are allowed to produce and sell one type of chip for a single purpose e.g. a network controller. For every chip produced a royality must be given to ARM. The 'Design Start' access level also includes a licenses for accessing a 'artisan physical IP library', a license for universities which incluedes teaching and prototyping and allows production of own chips without royalities in low margins. At last there is a \acrshort{FPGA} license which is free and includes a \gls{FPGA} optimized version of the Cortex-M3 and M1. Production is not allowed with this license.
+
+	The next level of access is called 'Flexible Access' and contains two license models one for \$0 to \$75K which allows one tape-out per year. On top of the entry price one pays per used processor design and a royality per produced chip. The other model starts at \$200K per year and uses the same payment additions as the first one. But it allows unlimited tape-outs and includes employee trainings, design tools and design support.
+
+	Above thes access levels there only officially exits the 'Standard' licensing model. This means one makes a individual contract with ARM.
+	Several articles from 2013 \cite{Demerjian2013}\cite{Demerjian2013a} talk about an older licensing model which contains special categories for higher access licenses. The highest of these, often revered as the 'Architectural' license is the only one that is allowed to edit the \gls{ISA} and develop completely free. The most prominent companys with such a license are Qualcom which develops and sells mobile phone chips and Apple which does the same and just announced a 'Apple Silicon' developed laptop chip on ARM basis. \cite{Apple2020} The article also mentions that preparing a licenese of this form often takes about 6-24 months and talks about per chip royalities of about 1-2.5\%. It also notices so called 'foundry contracts' where customers can buy silicon ready ARM designs in cooperation with a silicon foundry. Most prominet example here are the Mali GPUs. This offers customers a fast and easy possibility to expand their chip with for example graphic accelerators.
+
+	% Here
+
 	\subsection{Structure and Complexity}
 	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance}
