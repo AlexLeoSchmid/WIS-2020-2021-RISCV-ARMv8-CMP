@@ -107,12 +107,14 @@ In order to determine whether RISC-V will gain a significant market share in the
 across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design.
 
 The first of these criteria is the \gls{ISA}'s business model. \glspl{ISA} are often protected by patents that prohibit anyone not licensed
-by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011} Whether these patents exist and the licensing terms
+by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011}
+
+Whether these patents exist and the licensing terms
 are an important factor when deciding which \gls{ISA} to use.
 
 The \gls{ISA}'s complexity refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
 time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
-increasing a \gls{CPU}'s development cost.
+increasing a \gls{CPU}'s development cost. \cite{Patterson1980}
 
 A \gls{CPU}'s performance can be evaluated under multiple aspects, including the rate of instructions, the rate of floating point operations or
 the speed at which the CPU executes a given program. Efficiency considerations, such as the code size of a given program when compiled to the \gls{CPU}'s
@@ -126,8 +128,8 @@ For the other performance aspects, it is debatable to which extent they are infl
 to the concrete implementation of the CPU. \cite{Blem2013} \cite{Akram2017}
 
 \glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}. These usually allow
-faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications,
-\gls{AES} extensions that optimize cryptography or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory.
+faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications \cite[page 52]{Arm2020},
+\gls{AES} extensions that optimize cryptography \cite{Arm2015} or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory. \cite{Arm2005}
 Having a small base instruction set with many fine grained extensions improves the flexibility of the \gls{ISA}, allowing \glspl{CPU} to be optimized for specific
 use cases, increasing performance and efficiency for those use cases. \gls{ISA} extensions do however pose a disadvantage when distributing precompiled software
 to end users, as a piece of software that uses a certain \gls{ISA} extension can't be executed on \glspl{CPU} that don't implement that extension, potentially
@@ -144,7 +146,24 @@ only.
 	\subsection{Structure and Complexity}
 	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance}
-	What are the differences in code size? Can we accurately compare the execution speed of both ISAs?
+	The code size of a given program is the performance factor that is most influenced by a \gls{CPU}'s \gls{ISA},
+	since it is independent of the \gls{CPU}'s microarchitecture and only influenced by the \gls{ISA} and compiler.
+	Given that code size is most critical in embedded applications, the Embench benchmark suite is a good benchmark
+	with which to compare code sizes. The Embench benchmark suite consists of a number of programs frequently used in embedded
+	applications, such as CRC, signal filtering, AES or QR code reading. \cite{Patterson2019}
+	When compiling the Embench suite for both RV32IMC as well as 32-bit ARM with the Thumb-2 extension with GCC version 7,
+	the code for RISC-V is approximately 11\% larger than the code for ARM. \cite{Perotti2020}
+	Part of this gap in code size can be explained by the relative immaturity of the RISC-V support of
+	GCC. RISC-V has only been added as a target for GCC in 2017 and the code size of the Embench suite
+	compiled for RISC-V is lower with subsequent versions of GCC, however still larger than ARM as of 2019. \cite{Patterson2019}
+
+	In \cite{Perotti2020} an extension for RISC-V is introduced, called HCC, that contains a number of instructions
+	aimed at reducing the code size of RISC-V. This extension brings the code size gap down to 2.2\% for the Embench suite
+	and makes the RISC-V code smaller than ARM by 1.75\% in a proprietary IoT benchmark developed by Huawei. \cite{Perotti2020}
+	
+	TODO: In subsequent submissions, mention RV64 being significantly smaller than AArch64 as described in \cite[page 62]{Waterman2016},
+	and possibilities of comparing execution speed and energy efficiency as described in \cite{Blem2013} and \cite{Akram2017}.
+
 	\subsection{Extensibility}
 	What instruction set extensions are there for both ISAs? Who can develop new extensions?
 	\subsection{Ecosystem}
@@ -153,9 +172,9 @@ only.
 
 \section{Discussion}
 \label{ref:discussion}
-	\subsection{ARM}
+	\subsection{Advantages of ARM}
 	What are the advantages of ARM compared to RISC-V?
-	\subsection{RISC-V}
+	\subsection{Advantages of RISC-V}
 	What are the advantages of RISC-V compared to ARM?
 	\subsection{Future directions and challenges}
 	How can we more accurately measure performance differences between ARM and RISC-V and how do ISA extensions affect performance?
