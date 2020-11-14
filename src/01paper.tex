@@ -64,45 +64,34 @@ keyword1, keyowrd2
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
 	\subsection{Complexity}
-	Risc-V and ARMv8 are both \gls{RISC} based architectures and compared to \gls{CISC} they are much more limited. \gls{RISC} machines are having a lot of characteristics, which are not necessary to be completely implemented, but they can lead to a few advantages of \gls{RISC} compared to \gls{CISC},  like an simpler control unit and faster decode, both because of the less instructions and addressing modes. \cite{George1990}\\
-	Even various \gls{RISC} \glspl{ISA} are different in complexity. To compare those differences, it is important to take a look into the RISC specific features and compare them in flexibility, amount and implementation.
+	Risc-V and ARMv8 are both \gls{RISC} based architectures and compared to \gls{CISC} they are much more limited and only writing into registers is supported. \gls{RISC} machines are having a lot of characteristics, which are not necessary to be completely implemented, but they can lead to a few advantages of \gls{RISC} compared to \gls{CISC}, like an simpler control unit and faster decode. \cite{George1990} \\
+Even various \gls{RISC} \glspl{ISA} are different in complexity. To compare those differences, it is important to take a look into the RISC specific features and compare them in flexibility, amount and implementation. So the basic Instruction sets, with corresponding extensions are compared together with the different realisations and the comparison of two basic assembly instructions.
 	\subsubsection{Instruction sets}
-	While the ARMv8 is clearly defined in relation to the instruction set, RISC-V is there much more variable. In RISC-V the only necessary Instruction set is the Integer instruction set. Those base integer instructions cannot be redefined, only extended by more optional instruction-sets. Additional to operations for the base \gls{ISA}, completely different extensions are available as you can see below.
-	\begin{description}
-	\item[M]	Extension for Integer Multiplication and Division
-	\item[A]	Extension for Atomic Instructions
-	\item[F]	Extension for Single-Precision Floating-Point
-	\item[D]	Extension for Double-Precision Floating-Point
-	\item[Q]	Extension for Quad-Precision Floating-Point
-	\item[L]	Extension for Decimal Floating-Point
-	\item[C] 	Extension for Compressed Instructions
-	\item[V]	Extension for Vector Operations
-	\item[B]	Extension for Bit Manipulation
-	\item[T]	Extension for Transactional Memory
-	\item[P]	Extension for Packet-SIMD Instructions
-	\end{description}
-The added alphabetical characters are defining the used instruction set with all his implemented extensions. While an ''M'' marks the architecture to be able to multiply the basic integer, an extension like ''F'' or ''V'' makes the architecture understanding a completely new number representation. This makes the RISC-V architecture only as complex as necessary, because all the gratuitous instructions are not implemented. \cite{Asanovic2016} \\
-ARM instead is defining the ARMv8 architecture in a completely different way. The ARMv8 supports also those extensions which are mentioned above but already in the basic version, which is also called v8.0. To build a more complex CPU the ARMv8 also provides extensions like ARMV8.1, ... , ARMv8.6 plus a few optional extensions.  Almost all the optional extensions of RISC-V are covered by the basic v8.0, which makes the ARMv8 only from the instructions set of view as complex as a fully extended RISC-V architecture. All those additional extensions like v8.1 etc. makes the architecture much more complex than the full extended RISC-V. \cite{ArmManual} \\
+	While the ARMv8 is clearly defined in relation to the instruction set, RISC-V is there much more variable. In RISC-V the only necessary Instruction set is the Integer instruction set. Those base integer instructions cannot be redefined, only extended by more optional instruction sets. Additional to operations for the base \gls{ISA}, completely different extensions are available. Further details are in chapter extensibility.
+This makes the RISC-V architecture only as complex as necessary, because all the gratuitous instructions are not implemented. \cite{Asanovic2016} \\
+ARM instead is defining the ARMv8 architecture in a completely different way. The ARMv8 supports already much more extensions in the basic version, also called v8.0. To build a more complex CPU the ARMv8 also provides extensions like ARMv8.1, ARMv8.2,up to ARMv8.6 plus a few optional extensions, which are also further compared in the chapter extensibility. Becaue almost all the optional extensions of RISC-V are covered by the basic v8.0, the ARMv8, only from the instructions set of view, is at least as complex as a fully extended RISC-V architecture. 
+%All those additional extensions like v8.1 etc. makes the architecture much more complex than the full extended RISC-V.
+\cite{ArmManual} \\
 
 \subsubsection{Instruction set implementations}
-Additional to the basic instruction sets in the chapter above the different \glspl{ISA} are able to implement those basic or extension instructions in different ways. Again the start will be made by the RISC-V architecture. This architecture is able to implement the instruction sets in 3 different versions a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
-While for the 32-bit and the 64-bit implementations are again multiple subversions available, RV32E, RV32G/RV64G, the RV128I is the only 128-bit implementation so far. The, lets say default version, RV32I implements 31 integer registers, the RV32E instead only 15 register. The subversion RV32G/RV64G is less a own version of implementation than a stable release. The RV32G/RV64G is not defining registers or instruction sets in its one way, it is combining a basic \gls{ISA} (RV32I or RV64I) plus different selected standard extensions (IMAFD). \cite{Asanovic2016} \\
-Also ARMv8 has, as aspected, different implementations, as well. While RISC-V is defining the implementations based on a number with the extensions, which are implemented, ARMv8 does it in a different way, because there are all the standard extensions already in the basic version included.
+The different \glspl{ISA} are able to implement the explained instructions in different ways.
+// The RISC-V architecture is able to implement the instruction sets in 3 different versions a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
+While for the 32-bit and the 64-bit implementations are also multiple subversions available, RV32E, RV32G/RV64G and RV128I, which is the only 128-bit implementation so far. RV32I is a version with only 15 instead of 31 registers. The subversion RV32G/RV64G is less a own version of implementation than a stable release. The RV32G/RV64G is combining a basic \gls{ISA} (RV32I or RV64I) plus different selected standard extensions (IMAFD). \cite{Asanovic2016} \\
+Also ARMv8 has, as expected, different implementations, as well. RISC-V defines the implementations based on a number followed by the extensions, which are implemented. ARMv8 does it in a different way, because there are all the standard extensions already in the basic version included.
 ARMv8 provides 3 different implementations A64, A32 and T32. As mentioned A64 is the 64-bit version and A32, T32  are both 32-bit versions.
-AARCH64 and AARCH32 are two different execution states in ARM (AARCH64 for 64-bit and AARCH32 for 32-bit), which are supporting the A64 in AARCH64 or A32/T32 in AARCH32.\cite{ArmManual}\\
+AARCH64 and AARCH32 are two different execution states in ARM (AARCH64 for 64-bit and AARCH32 for 32-bit) The execution states are supporting the A64 instruction set in AARCH64 or A32/T32 in AARCH32.\cite{ArmManual}\\
 
 \subsubsection{registers and access}
-To compare the overview in an maybe for users more abstract point of few, the basic assembler commands (load and read), which are always necessary to read and write the registers of an \gls{RISC} architecture. Taking an basic RISC-V architecture RV32I for example, which has 32 Registers from x0 to x31. Each of these registers is 32 bits (1 word) wide. 
-To load an value from a register lw, lh or lb is called. lw means load word, which loads the complete register, lh means load halfword and loads 16 bit out of 32 bits, lb means load byte which are alternative ways in RISC-V to load only more specific parameters. Both are built-on the same way and can be extended by an U (LHU, LBU) to load unsigned. All three of them are taking 2 parameters, a temp register to store the value in and an address to load the value from. The address is a pointer to the register together with an offset.
-In the same way the store instructions sw,sh and sb are working. sw means store word, sh store halfword and sb means store byte. The built-on is the same way as it is for lw,lh and lb. But the left side of the command is the temp register to take the value from and the second parameter is the register to store the value in (again with an offset) \cite{Asanovic2016}
-ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only an byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value in a register there are 3 possible ways STR to store complete register, STRB to Store byte, STRH to store halfword. So far its the same as for RISC-V.These basic load and store commands are followed by a few more, to load/store pairs, non temporal pairs and unscaled offsets and much more. Because there is not such an possibility in RISC-V there is no comparison about them. \cite{ArmManual}
+To complete the overview in an maybe for users more abstract point of few, the basic assembler commands (load and read) are compared.\\
+
+To load an value from the RISC-V register lw, lh or lb is called. lw means load word, which loads the complete register, lh means load halfword and loads only 16 bit, lb means load byte. All are built-on the same way and lh and lb can be extended by an U (LHU, LBU) to load them as an unsigned value. All instructions are taking 2 parameters, a temp register to store the value in and an address to load the value from. The address is a pointer to the register together with an offset.
+In the same way the store instructions sw,sh and sb are working. sw means store word, sh store halfword and sb means store byte. The built-on is the same way as it is for the loading. But the left side of the command is the temp register to take the value from and the second parameter is the register to store the value in (again with an offset). \cite{Asanovic2016}
+ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only an byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value in a register there are 3 possible ways STR to store complete register, STRB to Store byte, STRH to store halfword. So far its the same as for RISC-V. These basic load and store commands are followed by a few more, to load/store pairs, non temporal pairs, unscaled offsets and much more. Because there is not such an possibility in RISC-V there is no comparison about them. \cite{ArmManual}
 
 %Write some stuff comparing machine-level and supervisor level \cite{AndrewWaterman} with 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
 %godbolt.org
-%basic comparing between basic  
+%basic comparing between basic
 
-
-	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance}
 	What are the differences in code size? Can we accurately compare the execution speed of both ISAs?
 	\subsection{Extensibility}
