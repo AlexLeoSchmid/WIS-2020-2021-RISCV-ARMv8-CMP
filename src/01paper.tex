@@ -23,7 +23,7 @@
 \newglossary[slg]{symbolslist}{syi}{syg}{Symbols}
 \renewcommand{\firstacronymfont}[1]{\emph{#1}}
 \renewcommand*{\glspostdescription}{}	% Punkt am Ende jeder Beschreibung entfernen
-\renewcommand*{\acrnameformat}[2]{#2 (\acronymfont{#1})}	% Langform der Akronyme
+%renewcommand*{\acrnameformat}[2]{#2 (\acronymfont{#1})}	% Langform der Akronyme
 \makeglossaries
 \date{\today}
 \input{glossary}
@@ -32,25 +32,29 @@
         
 \begin{document}
 
-\title{Paper Title *TODO edit*}
+\title{Advantages and disadvantages of the RISC-V ISA
+(Instruction Set Architecture) in comparison to the
+ARMv8 ISA}
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
+\author{\IEEEauthorblockN{1\textsuperscript{st} Michael Schneider}
 \IEEEauthorblockA{\textit{Faculity of Computer Science and Mathematics} \\
 \textit{OTH Regensburg}\\
 Regensburg, Germany \\
-name.surname@st.oth-regensburg.de}
-%\and
-%\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
-%\and
-%\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
-%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-%\textit{name of organization (of Aff.)}\\
-%City, Country \\
-%email address}
+michael4.schneider@st.oth-regensburg.de
+}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Florian Henneke}
+\IEEEauthorblockA{\textit{Faculity of Computer Science and Mathematics} \\
+\textit{OTH Regensburg}\\
+Regensburg, Germany \\
+florian.henneke@st.oth-regensburg.de
+}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Alexander Schmid}
+\IEEEauthorblockA{\textit{Faculity of Computer Science and Mathematics} \\
+\textit{OTH Regensburg} \\
+Regensburg, Germany \\
+alexander2.schmid@st.oth-regensburg.de}
 %\and
 %\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
 %\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
@@ -83,9 +87,10 @@ keyword1, keyowrd2
 
 \section{Introduction}
 \label{ref:introduction}
-	\subsection{Overview}
+	\subsection{Topic}
 	\subsection{Motivation}
 	\subsection{Goal}
+	\subsection{Overview of paper}
 
 \section{Background}
 \label{ref:background}
@@ -98,12 +103,67 @@ keyword1, keyowrd2
 
 \section{Concept and Methods}
 \label{ref:concept}
+In order to determine whether RISC-V will gain a significant market share in the following years, it is useful to compare the two \glspl{ISA}
+across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design.
+
+The first of these criteria is the \gls{ISA}'s business model. \glspl{ISA} are often protected by patents that prohibit anyone not licensed
+by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011}
+
+Whether these patents exist and the licensing terms
+are an important factor when deciding which \gls{ISA} to use.
+
+The \gls{ISA}'s complexity refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
+time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
+increasing a \gls{CPU}'s development cost. \cite{Patterson1980}
+
+A \gls{CPU}'s performance can be evaluated under multiple aspects, including the rate of instructions, the rate of floating point operations or
+the speed at which the CPU executes a given program. Efficiency considerations, such as the code size of a given program when compiled to the \gls{CPU}'s
+instruction set or the amount of power the \gls{CPU} consumes when executing a given program are closely related to performance and shall, for the
+purposes of this paper, be grouped under performance.
+
+A program's code size is greatly influenced by the \gls{ISA}, since the instruction set and the compiler used are the only two factors that influence
+code size. As such, the code size is an important factor to consider when choosing which \gls{ISA} to implement for a new processor design, especially
+for microcontrollers that are usually very constrained in the size of their program memory.
+For the other performance aspects, it is debatable to which extent they are influenced by the \gls{CPU}'s instruction set as opposed
+to the concrete implementation of the CPU. \cite{Blem2013} \cite{Akram2017}
+
+\glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}. These usually allow
+faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications \cite[page 52]{Arm2020},
+\gls{AES} extensions that optimize cryptography \cite{Arm2015} or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory. \cite{Arm2005}
+Having a small base instruction set with many fine grained extensions improves the flexibility of the \gls{ISA}, allowing \glspl{CPU} to be optimized for specific
+use cases, increasing performance and efficiency for those use cases. \gls{ISA} extensions do however pose a disadvantage when distributing precompiled software
+to end users, as a piece of software that uses a certain \gls{ISA} extension can't be executed on \glspl{CPU} that don't implement that extension, potentially
+increasing the number of different versions of that software that need to be distributed.
+
+An \gls{ISA}'s ecosystem refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
+When developing a new \gls{CPU} it is preferrable to use an \gls{ISA} with a large ecosystem, in order to maximize the amount of software
+that can run of that \gls{CPU}. This is especially important in consumer desktop and mobile devices where a large variety of software is to be executed,
+but less important in embedded applications, where the software running on a microcontroller is specifically developed for that application and microcontroller
+only.
+
 	\subsection{Business Models}
 	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
-	\subsection{Complexity}
+	\subsection{Structure and Complexity}
 	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance}
-	What are the differences in code size? Can we accurately compare the execution speed of both ISAs?
+	The code size of a given program is the performance factor that is most influenced by a \gls{CPU}'s \gls{ISA},
+	since it is independent of the \gls{CPU}'s microarchitecture and only influenced by the \gls{ISA} and compiler.
+	Given that code size is most critical in embedded applications, the Embench benchmark suite is a good benchmark
+	with which to compare code sizes. The Embench benchmark suite consists of a number of programs frequently used in embedded
+	applications, such as CRC, signal filtering, AES or QR code reading. \cite{Patterson2019}
+	When compiling the Embench suite for both RV32IMC as well as 32-bit ARM with the Thumb-2 extension with GCC version 7,
+	the code for RISC-V is approximately 11\% larger than the code for ARM. \cite{Perotti2020}
+	Part of this gap in code size can be explained by the relative immaturity of the RISC-V support of
+	GCC. RISC-V has only been added as a target for GCC in 2017 and the code size of the Embench suite
+	compiled for RISC-V is lower with subsequent versions of GCC, however still larger than ARM as of 2019. \cite{Patterson2019}
+
+	In \cite{Perotti2020} an extension for RISC-V is introduced, called HCC, that contains a number of instructions
+	aimed at reducing the code size of RISC-V. This extension brings the code size gap down to 2.2\% for the Embench suite
+	and makes the RISC-V code smaller than ARM by 1.75\% in a proprietary IoT benchmark developed by Huawei. \cite{Perotti2020}
+	
+	TODO: In subsequent submissions, mention RV64 being significantly smaller than AArch64 as described in \cite[page 62]{Waterman2016},
+	and possibilities of comparing execution speed and energy efficiency as described in \cite{Blem2013} and \cite{Akram2017}.
+
 	\subsection{Extensibility}
 	What instruction set extensions are there for both ISAs? Who can develop new extensions?
 	\subsection{Ecosystem}
@@ -112,9 +172,9 @@ keyword1, keyowrd2
 
 \section{Discussion}
 \label{ref:discussion}
-	\subsection{ARM}
+	\subsection{Advantages of ARM}
 	What are the advantages of ARM compared to RISC-V?
-	\subsection{RISC-V}
+	\subsection{Advantages of RISC-V}
 	What are the advantages of RISC-V compared to ARM?
 	\subsection{Future directions and challenges}
 	How can we more accurately measure performance differences between ARM and RISC-V and how do ISA extensions affect performance?
@@ -122,11 +182,15 @@ keyword1, keyowrd2
 \section{Conclusion and Outlook}
 \label{ref:conclusion}
 	\subsection{Summary of results}
-	\subsection{Accuracy of results}
+	\subsection{Interpretation of results}
 	\subsection{Future directions}
 
 \section{Overview of Literature}
 Alexander Schmid \cite{Akram2017} \cite{Arm2020} \cite{Asanovic2014} \cite{HeuiLee2001} \cite{Patterson2019} \cite{Perotti2020} \cite{Shore2015} \cite{Waterman2016} \cite{Xu2003}
+
+Florian Henneke \cite{Waterman2016} \cite{Ryzhyk2006} \cite{Asanovic2014} \cite{Furber2000} \cite{Microsoft2020} \cite{Greenwaves2020} \cite{Aws2020} \cite{Microsoft2020}
+
+Michael Schneider \cite{50years} \cite{hennessy2012computer} \cite{drechsler2020enhanced} \cite{WisconsinMadison2016} \cite{IEEE2018} \cite{Dirvin2019} \cite{Bandic2019}
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
