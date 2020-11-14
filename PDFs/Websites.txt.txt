@@ -1,0 +1,5 @@
+Arm-Ecosystem:
+https://www.arm.com/company/news/2019/04/the-arm-ecosystem-more-than-just-an-ecosystem
+
+Open RISC Architecture with short chapter of ecosystems
+http://www.hsafoundation.com/the-inherent-freedom-of-heterogeneous-systems/

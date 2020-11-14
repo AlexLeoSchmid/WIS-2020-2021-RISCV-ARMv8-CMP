@@ -32,9 +32,13 @@
         
 \begin{document}
 
+<<<<<<< HEAD
 \title{Advantages and disadvantages of the RISC-V ISA
 (Instruction Set Architecture) in comparison to the
 ARMv8 ISA}
+=======
+\title{A comparison of the ARMv8 and RISC-V Instruction Set Architectures}
+>>>>>>> 7662f47fb83a044f6c911d0137cc5090a4fc36ed
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Michael Schneider}
 \IEEEauthorblockA{\textit{Faculity of Computer Science and Mathematics} \\
@@ -107,14 +111,22 @@ In order to determine whether RISC-V will gain a significant market share in the
 across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design.
 
 The first of these criteria is the \gls{ISA}'s business model. \glspl{ISA} are often protected by patents that prohibit anyone not licensed
+<<<<<<< HEAD
 by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011}
 
 Whether these patents exist and the licensing terms
+=======
+by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011} Whether these patents exist and the licensing terms
+>>>>>>> 7662f47fb83a044f6c911d0137cc5090a4fc36ed
 are an important factor when deciding which \gls{ISA} to use.
 
 The \gls{ISA}'s complexity refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
 time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
+<<<<<<< HEAD
 increasing a \gls{CPU}'s development cost. \cite{Patterson1980}
+=======
+increasing a \gls{CPU}'s development cost.
+>>>>>>> 7662f47fb83a044f6c911d0137cc5090a4fc36ed
 
 A \gls{CPU}'s performance can be evaluated under multiple aspects, including the rate of instructions, the rate of floating point operations or
 the speed at which the CPU executes a given program. Efficiency considerations, such as the code size of a given program when compiled to the \gls{CPU}'s
@@ -128,8 +140,13 @@ For the other performance aspects, it is debatable to which extent they are infl
 to the concrete implementation of the CPU. \cite{Blem2013} \cite{Akram2017}
 
 \glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}. These usually allow
+<<<<<<< HEAD
 faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications \cite[page 52]{Arm2020},
 \gls{AES} extensions that optimize cryptography \cite{Arm2015} or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory. \cite{Arm2005}
+=======
+faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications,
+\gls{AES} extensions that optimize cryptography or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory.
+>>>>>>> 7662f47fb83a044f6c911d0137cc5090a4fc36ed
 Having a small base instruction set with many fine grained extensions improves the flexibility of the \gls{ISA}, allowing \glspl{CPU} to be optimized for specific
 use cases, increasing performance and efficiency for those use cases. \gls{ISA} extensions do however pose a disadvantage when distributing precompiled software
 to end users, as a piece of software that uses a certain \gls{ISA} extension can't be executed on \glspl{CPU} that don't implement that extension, potentially
