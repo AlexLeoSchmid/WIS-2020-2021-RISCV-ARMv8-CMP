@@ -103,8 +103,9 @@ keyword1, keyowrd2
 
 \section{Concept and Methods (Initial section written by Alexander Schmid)}
 \label{ref:concept}
-In order to determine whether RISC-V will gain a significant market share in the following years, it is useful to compare the two \glspl{ISA}
-across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design.
+Given that the goal of this paper is to compare the two \glspl{ISA}
+across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design,
+these criteria shall be defined in the following section.
 
 The first of these criteria is the \gls{ISA}'s business model. \glspl{ISA} are often protected by patents that prohibit anyone not licensed
 by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011}
@@ -113,17 +114,16 @@ Whether these patents exist and the licensing terms
 are an important factor when deciding which \gls{ISA} to use.
 
 The \gls{ISA}'s complexity refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
-time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
+time is spent on implementing and verifying the implementation of the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
 increasing a \gls{CPU}'s development cost. \cite{Patterson1980}
 
 A \gls{CPU}'s performance usually refers to the speed at which the \gls{CPU} executes a given program. Efficiency considerations, such as the code size of a given program
 or the amount of power the \gls{CPU} consumes when executing a given program are closely related to performance and shall, for the
 purposes of this paper, be grouped under performance.
-Code size is largely influenced by the \gls{ISA} and not by the \gls{CPU}'s implementation.
-For the other performance aspects, the influence of the \gls{ISA} is debatable. \cite{Blem2013} \cite{Akram2017}
+
 
 \glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}.
-The choice of extensions greatly influence the flexibility of an \gls{ISA} and thus are an important factor to consider which \gls{ISA} to implement for a new \gls{CPU}, because these have a large impact on performance
+The choice of extensions greatly influence the flexibility of an \gls{ISA}. Thus they are an important factor to consider which \gls{ISA} to implement for a new \gls{CPU}, because these have a large impact on performance
 and development cost of a \gls{CPU}.
 
 An \gls{ISA}'s ecosystem refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
@@ -135,8 +135,10 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 	\subsection{Structure and Complexity}
 	How many instructions are there? How complex does that make the implementation of a core?
 	\subsection{Performance (written by Alexander Schmid)}
-	Since code size is the performance factor most influenced by a \gls{CPU}'s \gls{ISA}, it will be the primary focus of the
-	performance comparison.
+	Code size is the performance parameter most influenced by the \gls{ISA} and not by the \gls{CPU}'s implementation,
+	given that the \gls{ISA} and the compiler are the only two factors that influence code size.
+	For the other performance aspects, the influence of the \gls{ISA} is debatable \cite{Blem2013} \cite{Akram2017},
+	so code size shall be the main focus of the performance comparison.
 	Given that code size is most critical in embedded applications, the Embench benchmark suite is a good benchmark
 	with which to compare code sizes. It consists of a number of programs frequently used in embedded
 	applications, such as CRC, signal filtering, AES and QR code reading. \cite{Patterson2019}
@@ -144,7 +146,7 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 	the code for RISC-V is approximately 11\% larger than the code for ARM. \cite{Perotti2020}
 	Part of this gap in code size can be explained by the relative immaturity of the RISC-V implementation of
 	GCC. RISC-V was introduced in 2017 and the code size of the Embench suite
-	compiled for RISC-V is lower with each subsequent version of GCC, however still larger than ARM as of 2019. \cite{Patterson2019}
+	compiled for RISC-V is lower with newer versions of GCC, however it is still larger than the code generated for ARM as of 2019. \cite{Patterson2019}
 
 	In \cite{Perotti2020} an extension for RISC-V is introduced, called HCC, that is aimed at reducing the code size of RISC-V.
 	This extension brings the code size gap down to 2.2\% for the Embench suite
