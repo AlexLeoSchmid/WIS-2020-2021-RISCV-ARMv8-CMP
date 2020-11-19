@@ -145,8 +145,37 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 
 	Besides taking influence in the development process, the membership also includes help in designing \gls{CPU} Cores, teaching for employees and more. It also allows the usage of the trademark 'RISC-V'.
 
-	\subsection{Structure and Complexity}
-	How many instructions are there? How complex does that make the implementation of a core?
+	\subsection{Complexity (written by Michael Schneider)}
+	Risc-V and ARMv8 are both \gls{RISC} based architectures. Compared to \gls{CISC} based architectures they are less powerful in their individual instructions and they are operating on register. \gls{RISC} machines have a lot of characteristics, which are not necessary to be completely implemented, but they can lead to different advantages of \gls{RISC}, if they are, like a simpler control unit and faster decoding. \cite{George1990} \\
+	Various \gls{RISC} \glspl{ISA} are different in complexity. To compare those differences, the basic instruction sets with corresponding extensions, the different realisations and two basic assembly instructions will be covered in the next chapters.
+	
+	\subsubsection{Instruction sets}
+	In RISC-V the only mandatory instruction set is the Integer instruction set. Those base integer instructions cannot be redefined, only extended by optional instruction sets. Further details about the extensions are in chapter \ref{sec:extensibility}. This concept makes the RISC-V architecture only as complex as necessary, because the \gls{ISA} can be tailored to a specific application. \cite{Waterman2017} \\
+	ARM instead defines the ARMv8 architecture in a completely different way. The ARMv8 alread supports many more extensions in the basic version, also called v8.0. Further extensions are available in later versions, as explained in the chapter \ref{sec:extensibility}. \cite{Arm2020} \\
+	Because almost all the optional extensions of RISC-V are covered by the basic v8.0, the ARMv8, regarding only the instructions, is at least as complex as a fully extended RISC-V architecture. 
+	%All those additional extensions like v8.1 etc. makes the architecture much more complex than the full extended RISC-V.
+	
+	\subsubsection{Instruction set implementations}
+	The different \glspl{ISA} are able to implement the explained instruction sets in various ways.
+	The RISC-V architecture is able to implement the instruction sets in 3 different word length, a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
+	For the 32-bit and the 64-bit implementations are also multiple subversions available, RV32E and RV32G/RV64G. For 128-bit, RV128I is the only 128-bit implementation so far. RV32E is a version with only 15 instead of 31 registers. The subversion RV32G/RV64G is less a own version than a stable release. The RV32G/RV64G is combining a basic \gls{ISA} (RV32I or RV64I) plus different selected standard extensions (IMAFD). \cite{Waterman2016} \\
+	Also ARMv8 has, different implementations,
+	A64, A32 and T32. A64 is the 64-bit version and A32, T32  are both 32-bit versions.
+	AArch64 and AArch32 are two different execution states in ARM (AArch64 for 64-bit and AArch32 for 32-bit). These execution states support the A64 instruction set in AArch64 and A32 and T32 in AArch32.\cite{Arm2020}\\
+	
+	\subsubsection{registers and access}
+	To complete the overview in a, for users more abstract point of view, two basic assembler commands (load and store) are compared.
+	To load a value from a RISC-V register, LW, LH or LB is used. The "L" means load and the following characters stand for word (32 bit), halfword (16 bit) and byte. LH and LB are signed and can be extended by an "U" (LHU, LBU) to load unsigned values. \cite{Waterman2017}
+	All instructions take 2 parameters, a register to store the value in and an address to load the value from. The address consists of the value stored in a register with an immediate offset.
+	The store instructions SW, SH and SB work in the same way. SW stands for store word, SH store halfword and SB means store byte. The commands are structured in the same way as the loading commands are. The left side of the command is the register to take the value from and the second parameter is the register, containing the address, and the offset, where the value should be stored.  \cite{Berkeley2019} \\
+	ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only a byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value, there are 3 possible ways STR to store the complete register, STRB to store a byte and STRH to store a halfword. These basic load and store commands are followed by: load/store pairs, unscaled offsets and much more. Because there is no such possibility in RISC-V, there is no comparison about them. \cite{Arm2020}
+	
+	%Todo: compare maybe the setup of the ARM instructions (are there more different/complex ways to use them??)
+	
+	%Write some stuff comparing machine-level and supervisor level \cite{AndrewWaterman} with 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
+	%godbolt.org
+	%basic comparing between basic
+	
 	\subsection{Performance (written by Alexander Schmid)}
 	Code size is the performance parameter most influenced by the \gls{ISA} and not by the \gls{CPU}'s implementation,
 	given that the \gls{ISA} and the compiler are the only two factors that influence code size.
@@ -168,7 +197,7 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 	TODO: In subsequent submissions, mention RV64 being significantly smaller than AArch64 as described in \cite[page 62]{Waterman2016},
 	and possibilities of comparing execution speed and energy efficiency as described in \cite{Blem2013} and \cite{Akram2017}.
 
-	\subsection{Extensibility}
+	\subsection{Extensibility}\label{sec:extensibility}
 	What instruction set extensions are there for both ISAs? Who can develop new extensions?
 	\subsection{Ecosystem}
 	Which compilers support ARM and RISC-V? Which operating systems and libraries?
@@ -194,7 +223,7 @@ Alexander Schmid \cite{Akram2017} \cite{Arm2020} \cite{Asanovic2014} \cite{HeuiL
 
 Florian Henneke \cite{Waterman2016} \cite{Ryzhyk2006} \cite{Asanovic2014} \cite{Furber2000} \cite{Microsoft2020} \cite{Greenwaves2020} \cite{Aws2020} \cite{Microsoft2020}
 
-Michael Schneider \cite{50years} \cite{hennessy2012computer} \cite{drechsler2020enhanced} \cite{WisconsinMadison2016} \cite{IEEE2018} \cite{Dirvin2019} \cite{Bandic2019}
+Michael Schneider \cite{Waterman2017} \cite{Arm2020} \cite{George1990} \cite{Waterman2016} \cite{50years} \cite{hennessy2012computer} \cite{drechsler2020enhanced} \cite{WisconsinMadison2016} \cite{IEEE2018} \cite{Dirvin2019} \cite{Bandic2019} \cite{Berkeley2019}
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
