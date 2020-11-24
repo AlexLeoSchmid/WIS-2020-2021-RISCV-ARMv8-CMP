@@ -97,9 +97,11 @@ keyword1, keyowrd2
 	\subsection{Instruction Set Architectures}
 	\subsection{RISC}
 	\subsection{ARM}
-	text
+	History, ...
+	closed source (pay for licenses), exists longer -> more implementations, weiter entwickelt, ...
 	\subsection{RISC-V}
-	text
+	geschichte, ...
+	open source, leichter und ggf kostengünstiger zu erstellen, ...
 
 \section{Concept and Methods (Initial section written by Alexander Schmid)}
 \label{ref:concept}
@@ -206,7 +208,9 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 	and possibilities of comparing execution speed and energy efficiency as described in \cite{Blem2013} and \cite{Akram2017}.
 
 	\subsection{Extensibility}\label{sec:extensibility}
-	What instruction set extensions are there for both ISAs? Who can develop new extensions?
+	Extension system of RISC-V (only a base instruction set (integer instruction set)) and all others are extensions.
+	ARM has a complete base version which contains almost all extensions of RISC-V. Furhter versions have much more extensions.
+	Who can develop new extensions?
 	\subsection{Ecosystem}
 	Which compilers support ARM and RISC-V? Which operating systems and libraries?
 
@@ -215,7 +219,12 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 \label{ref:discussion}
 	\subsection{Advantages of ARM}
 	What are the advantages of ARM compared to RISC-V?
+	- more instruction formats and more basic instructions and extensions makes it more various applicable.
+	- more different instructions makes the assembler code in a good written way smaller and more performant
 	\subsection{Advantages of RISC-V}
+	- lower amount of basic instruction sets and only optional extensions makes it less complex to implement.
+	- less instruction formats makes it more easy to build
+	- less different instructions makes the familiarization with programming easier
 	What are the advantages of RISC-V compared to ARM?
 	\subsection{Future directions and challenges}
 	How can we more accurately measure performance differences between ARM and RISC-V and how do ISA extensions affect performance?
