@@ -101,70 +101,128 @@ keyword1, keyowrd2
 	\subsection{RISC-V}
 	text
 
-\section{Concept and Methods}
+\section{Concept and Methods (Initial section written by Alexander Schmid)}
 \label{ref:concept}
-In order to determine whether RISC-V will gain a significant market share in the following years, it is useful to compare the two \glspl{ISA}
-across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design.
+Given that the goal of this paper is to compare the two \glspl{ISA}
+across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design,
+the following section defines these criteria.
 
-The first of these criteria is the \gls{ISA}'s business model. \glspl{ISA} are often protected by patents that prohibit anyone not licensed
-by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA}. \cite{Tang2011}
+The first of these criteria is the \gls{ISA}'s \textbf{business model}. There are often a number of patents protecting an \glspl{ISA} that prohibit anyone not licensed
+by the patent owner from distributing \glspl{CPU} that implement that \gls{ISA} \cite{Tang2011}.
 
 Whether these patents exist and the licensing terms
-are an important factor when deciding which \gls{ISA} to use.
+are an important factor when deciding which \gls{ISA} to use. The two \gls{ISA}'s business models are compared in chapter \ref{businessModels}.
 
-The \gls{ISA}'s complexity refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
-time is spent on implementing and verifying a \gls{CPU}'s compatibility to the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
-increasing a \gls{CPU}'s development cost. \cite{Patterson1980}
+The \gls{ISA}'s \textbf{complexity} refers to the amount of effort required to implement the \gls{ISA}. The more complex an \gls{ISA} is, the more developer
+time is spent on implementing and verifying the implementation of the \gls{ISA}, instead of optimizing the \gls{CPU} for performance and efficiency,
+increasing a \gls{CPU}'s development cost \cite{Patterson1980}. For the comparison of both \glspl{ISA}'s complexity, see chapter \ref{complexity}.
 
-A \gls{CPU}'s performance can be evaluated under multiple aspects, including the rate of instructions, the rate of floating point operations or
-the speed at which the CPU executes a given program. Efficiency considerations, such as the code size of a given program when compiled to the \gls{CPU}'s
-instruction set or the amount of power the \gls{CPU} consumes when executing a given program are closely related to performance and shall, for the
-purposes of this paper, be grouped under performance.
+The next aspect is a \gls{CPU}'s \textbf{performance}. There are various aspects that make up a \gls{CPU}'s performance.
+Among these are the code size and execution speed.
+The \gls{CPU}'s \gls{ISA} influences each of these performance aspects to varying degrees. Chapter \ref{performance} elaborates
+the extent of that influence and compares the two \glspl{ISA} in these performance aspects, where possible.
 
-A program's code size is greatly influenced by the \gls{ISA}, since the instruction set and the compiler used are the only two factors that influence
-code size. As such, the code size is an important factor to consider when choosing which \gls{ISA} to implement for a new processor design, especially
-for microcontrollers that are usually very constrained in the size of their program memory.
-For the other performance aspects, it is debatable to which extent they are influenced by the \gls{CPU}'s instruction set as opposed
-to the concrete implementation of the CPU. \cite{Blem2013} \cite{Akram2017}
+\glspl{ISA} often allow for a number of instruction set \textbf{extensions} that may or may not be implemented by a given \gls{CPU}.
+The choice of extensions greatly influence the flexibility of an \gls{ISA} and its performance for specific use cases.
+Thus they are an important factor to consider which \gls{ISA} to implement for a new \gls{CPU}.
 
-\glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}. These usually allow
-faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications \cite[page 52]{Arm2020},
-\gls{AES} extensions that optimize cryptography \cite{Arm2015} or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory. \cite{Arm2005}
-Having a small base instruction set with many fine grained extensions improves the flexibility of the \gls{ISA}, allowing \glspl{CPU} to be optimized for specific
-use cases, increasing performance and efficiency for those use cases. \gls{ISA} extensions do however pose a disadvantage when distributing precompiled software
-to end users, as a piece of software that uses a certain \gls{ISA} extension can't be executed on \glspl{CPU} that don't implement that extension, potentially
-increasing the number of different versions of that software that need to be distributed.
-
-An \gls{ISA}'s ecosystem refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
+An \gls{ISA}'s \textbf{ecosystem} refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
 When developing a new \gls{CPU} it is preferrable to use an \gls{ISA} with a large ecosystem, in order to maximize the amount of software
-that can run of that \gls{CPU}. This is especially important in consumer desktop and mobile devices where a large variety of software is to be executed,
-but less important in embedded applications, where the software running on a microcontroller is specifically developed for that application and microcontroller
-only.
+that can run on that \gls{CPU}. This is especially important in consumer desktop and mobile devices where a large variety of software is to be executed.
 
-	\subsection{Business Models}
-	Who develops the CPU cores, how can you get access to them? Who supports chip manufacturers in designing a chip with that CPU core?
-	\subsection{Structure and Complexity}
-	How many instructions are there? How complex does that make the implementation of a core?
-	\subsection{Performance}
-	The code size of a given program is the performance factor that is most influenced by a \gls{CPU}'s \gls{ISA},
-	since it is independent of the \gls{CPU}'s microarchitecture and only influenced by the \gls{ISA} and compiler.
+	\subsection{Business Models (written by Florian Henneke)}
+	\label{businessModels}
+	%When taking a look at the business model of the two rivaling \glspl{ISA} one will detect two substantially different approaches. While ARM takes the traditional path of licensing its intellectual property to semiconductor companies, RISC-V stands out with the completely different way of publishing its \gls{ISA} in an open source manner. This includes giving away their \gls{ISA} definition for free, which raises the standard questions criticizing open source material.
+	[Introduction shortend because of word limit]
+
+	Beginning with the classic model of ARM, the following sections will cover the two license models: ARM sells its \glspl{ISA} in various licensing models. \cite{ARMLC} These are staggered in multiple levels of access. The 'Design Start' level includes free access to the IP-Core of the simplest ARM Chips Cortex-M0 and Cortex-M3 aswell as the corresponding toolchain and processor models. For a fee between \$0 and \$75K the IP-Core of the Cortex-A5 aswell as the permission for 'single use' chip production can be aquired. This allows the customer to produce and sell one type of chip for a single purpose e.g. a network controller. For every chip produced, a royality must be given to ARM. The 'Design Start' access level also includes a license for accessing a 'artisan physical IP library', a license for universities which includes teaching and prototyping and allows non commercial production of own chips without royalities in small volumes. At last there is an '\acrshort{FPGA}' license which is free and includes a \gls{FPGA} optimized version of the Cortex-M3 and M1. Production is not allowed with this license.
+
+	%The next level of access is called 'Flexible Access' and contains two license models, one for \$0 to \$75K which allows one tape-out per year. On top of the entry price one pays per used processor design and a royality per produced chip. The other model starts at \$200K per year and uses the same payment additions as the first one. But it allows unlimited tape-outs and includes employee trainings, design tools and design support.
+	[Removed short section due to word limit]
+
+	Above those access levels, there only officially exists the 'Standard' licensing model. This means one makes a individual contract with ARM.
+	Several articles from 2013 \cite{Demerjian2013}\cite{Demerjian2013a} talk about an older licensing model which contains special categories for higher access licenses. The highest of these, often referred as the 'Architectural' license is the only one that allows editing of the \gls{ISA} and developing completely freely. The most prominent companies with such a license are Qualcomm which develops and sells mobile phone chips and Apple who just announced a 'Apple Silicon' developed laptop chip based on ARM. \cite{Apple2020} The article also mentions that preparing a license of this form often takes about 6-24 months and states per-chip royalities of about 1-2.5\%. It also notices so called 'foundry contracts' where customers can buy silicon ready ARM designs in cooperation with a silicon foundry. The most prominent example here are the Mali GPUs. This offers customers a fast and easy way to expand their chip with, for example, graphic accelerators.
+
+	In contrast to the ARM license model, RISC-V is published using the 'Creative Commons Attribution 4.0' license. \cite{Waterman2017}\cite{Waterman2017a} This license allows the user to 'share' and 'adapt'. This means you are free to copy and redistribute as well as modify, change, build upon and sell it commercially. It is not necessary to share changes in an open source manner and you are only restricted by the obligation to give credit to the original licensor. \cite{CC} An important addition is also, that the license cannot be revoked by the licensor. This means everything about RISC-V that is already published will always be free to use.
+	Originally founded by Berkley University, the RISC-V \gls{ISA} standard is now managed by the nonprofit organization 'RISC-V International', founded in 2015. \cite{RVIAbout} As the statutes of the organization include, the association has 'no pecunuary, self-help or commercial purpose' \cite{RVIArt}. Running expenses and further development of the standard do however require a certain liquidity. This is ensured by a membership program surrounding the specification. \cite{RVIMem} Resembling the ARM licensing model, it contains three levels: 'Premier', 'Strategic' and 'Community'. Costing between \$2K and \$250K annually, these levels do not restrict access to the \gls{ISA}, but grant several levels of taking influence on the future development of the standard through seats in the 'Technical Steering Commitee', speaker slots on conferences and representation on the official RISC-V International website and blog. There are also three 'Strategic Directors', which are elected out of the 'Premier' and 'Strategic' Members and one Academic as well as one Communtiy Director, which is elected by the 'Communtiy' level of members. \cite{RVIAss}
+
+	Besides taking influence in the development process, the membership also includes help in designing \gls{CPU} Cores, teaching for employees and more. It also allows the usage of the trademark 'RISC-V'.
+
+	\subsection{Complexity (written by Michael Schneider)}
+	\label{complexity}
+	Risc-V and ARMv8 are both \gls{RISC} based architectures. %Compared to \gls{CISC} based architectures they are less powerful in their individual instructions and they are operating on register. \gls{RISC} machines have a lot of characteristics, which are not necessary to be completely implemented, but they can lead to different advantages of \gls{RISC}, if they are, like a simpler control unit and faster decoding. \cite{George1990} \\
+	Various \gls{RISC} \glspl{ISA} are different in complexity. To compare those differences, the basic instruction sets with corresponding extensions, the different realisations and two basic assembly instructions will be covered in the next chapters.
+	
+	\subsubsection{Instruction sets}
+	In RISC-V the only mandatory instruction set is the Integer instruction set. Those base integer instructions cannot be redefined, only extended by optional instruction sets. Further details about the extensions are in chapter \ref{sec:extensibility}. This concept makes the RISC-V architecture only as complex as necessary, because the \gls{ISA} can be tailored to a specific application. \cite{Waterman2017} \\
+	ARM instead defines the ARMv8 architecture in a completely different way. The ARMv8 alread supports many more extensions in the basic version, also called v8.0. Further extensions are available in later versions, as explained in the chapter \ref{sec:extensibility}. \cite{Arm2020} \\
+	Because almost all the optional extensions of RISC-V are covered by the basic v8.0, the ARMv8, regarding only the instructions, is at least as complex as a fully extended RISC-V architecture. 
+	%All those additional extensions like v8.1 etc. makes the architecture much more complex than the full extended RISC-V.
+	
+	\subsubsection{Instruction set implementations}
+	The different \glspl{ISA} are able to implement the explained instruction sets in various ways.
+	The RISC-V architecture is able to implement the instruction sets in 3 different word length, a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
+	For the 32-bit and the 64-bit implementations are also multiple subversions available, RV32E and RV32G/RV64G. For 128-bit, RV128I is the only 128-bit implementation so far. RV32E is a version with only 15 instead of 31 registers. The subversion RV32G/RV64G is less a own version than a stable release. The RV32G/RV64G is combining a basic \gls{ISA} (RV32I or RV64I) plus different selected standard extensions (IMAFD). \cite{Waterman2016} \\
+	Also ARMv8 has, different implementations,
+	A64, A32 and T32. A64 is the 64-bit version and A32, T32  are both 32-bit versions.
+	AArch64 and AArch32 are two different execution states in ARM (AArch64 for 64-bit and AArch32 for 32-bit). These execution states support the A64 instruction set in AArch64 and A32 and T32 in AArch32.\cite{Arm2020}\\
+	
+	\subsubsection{registers and access}
+	To complete the overview in a, for users more abstract point of view, two basic assembler commands (load and store) are compared.
+	To load a value from a RISC-V register, LW, LH or LB is used. The "L" means load and the following characters stand for word (32 bit), halfword (16 bit) and byte. LH and LB are signed and can be extended by an "U" (LHU, LBU) to load unsigned values. \cite{Waterman2017}
+	All instructions take 2 parameters, a register to store the value in and an address to load the value from. The address consists of the value stored in a register with an immediate offset.
+	The store instructions SW, SH and SB work in the same way. SW stands for store word, SH store halfword and SB means store byte. The commands are structured in the same way as the loading commands are. The left side of the command is the register to take the value from and the second parameter is the register, containing the address, and the offset, where the value should be stored.  \cite{Berkeley2019} \\
+	ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only a byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value, there are 3 possible ways STR to store the complete register, STRB to store a byte and STRH to store a halfword. These basic load and store commands are followed by: load/store pairs, unscaled offsets and much more. Because there is no such possibility in RISC-V, there is no comparison about them. \cite{Arm2020}
+	
+	%Todo: compare maybe the setup of the ARM instructions (are there more different/complex ways to use them??)
+	
+	%Write some stuff comparing machine-level and supervisor level \cite{AndrewWaterman} with 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
+	%godbolt.org
+	%basic comparing between basic
+	
+	\subsection{Performance (Alexander Schmid)}
+	\label{performance}
+	Code size is the performance parameter most influenced by the \gls{ISA} and not by the \gls{CPU}'s implementation,
+	given that the \gls{ISA} and the compiler are the only two factors that influence code size.
+	Because of this, code size is the most meaningful performance aspect to compare when evaluating the performance of different \glspl{ISA}.
 	Given that code size is most critical in embedded applications, the Embench benchmark suite is a good benchmark
-	with which to compare code sizes. The Embench benchmark suite consists of a number of programs frequently used in embedded
-	applications, such as CRC, signal filtering, AES or QR code reading. \cite{Patterson2019}
-	When compiling the Embench suite for both RV32IMC as well as 32-bit ARM with the Thumb-2 extension with GCC version 7,
-	the code for RISC-V is approximately 11\% larger than the code for ARM. \cite{Perotti2020}
-	Part of this gap in code size can be explained by the relative immaturity of the RISC-V support of
-	GCC. RISC-V has only been added as a target for GCC in 2017 and the code size of the Embench suite
-	compiled for RISC-V is lower with subsequent versions of GCC, however still larger than ARM as of 2019. \cite{Patterson2019}
+	with which to compare code sizes \cite{Patterson2019}. It consists of a number of programs frequently used in embedded
+	applications, such as CRC, signal filtering, AES and QR code reading \cite{Patterson2019}.
+	When compiling the Embench suite for both RV32IMC as well as 32-bit ARM with the Thumb-2 extension for code compression (called T32 in ARMv8, see chapter \ref{complexity}) using GCC 7,
+	the code for RISC-V is approximately 11\% larger than the code for ARM \cite{Perotti2020}.
+	Part of this gap in code size can be explained by the relative immaturity of the RISC-V implementation of
+	GCC. RISC-V support for GCC was introduced in 2017 and the code size of the Embench suite
+	compiled for RISC-V is lower with newer versions of GCC, however it is still larger than the code generated for ARM as of 2019 \cite{Patterson2019}.
 
-	In \cite{Perotti2020} an extension for RISC-V is introduced, called HCC, that contains a number of instructions
-	aimed at reducing the code size of RISC-V. This extension brings the code size gap down to 2.2\% for the Embench suite
+	In \cite{Perotti2020} an extension for RISC-V is introduced, called HCC, that is aimed at reducing the code size of RISC-V.
+	This extension brings the code size gap down to 2.2\% for the Embench suite
 	and makes the RISC-V code smaller than ARM by 1.75\% in a proprietary IoT benchmark developed by Huawei. \cite{Perotti2020}
 	
-	TODO: In subsequent submissions, mention RV64 being significantly smaller than AArch64 as described in \cite[page 62]{Waterman2016},
-	and possibilities of comparing execution speed and energy efficiency as described in \cite{Blem2013} and \cite{Akram2017}.
+	For 64-bit code size, the SPEC CPU2006 benchmark, when compiled to both RV64C as well as ARM A64 using GCC 5.2,
+	is over 20\% larger on ARM as compared to RISC-V \cite[page 62]{Waterman2016}.
+	This difference is mainly caused by the fact that ARM does not include a compressed instruction set like T32 for 64-bit, while RISC-V does.
+	Code size is less important in applications where 64-bit \glspl{CPU} are typically used, because these applications
+	are not as constrained in program memory size as embedded applications. A more dense 64-bit instruction set does however allow better utilization of the instruction cache,
+	leading to better execution time \cite[slide 46]{Celio2016}.
 
-	\subsection{Extensibility}
+	An issue when comparing execution speed is that the implementation of a specific \gls{CPU} has a far greater impact than the \gls{ISA}.
+	One way to isolate the influence of the ISA is by only comparing the dynamic instruction count.
+	The dynamic instruction count refers to the number of instructions the \gls{CPU} executes when executing a specific program
+	and, like code size, it is only influenced by the \gls{ISA} and compiler.
+
+	For the SPECint portion of the SPEC CPU 2006 benchmark compiled with GCC 5.3, the dynamic instruction count is approximately
+	10\% larger for RV64G as compared to ARM A64 \cite[slide 38]{Celio2016}.
+	This difference can be explained by the presence of complex memory instructions in ARM that require multiple instructions
+	for the same task in RISC-V \cite[slide 40]{Celio2016}.
+	These instructions may however be split into multiple micro-operations on an ARM \gls{CPU} via a process called micro-op generation \cite[slide 40]{Celio2016}.
+	Similarly, an optimizing RISC-V CPU might execute multiple instructions that often occur together as if they were one instruction.
+	This process is called macro-op fusion \cite[slide 16]{Celio2016}.
+	When accounting for both micro-op generation as well as macro-op fusion, there is no significant difference in cycle count between RISC-V and ARM
+	in the aforementioned SPECint benchmark \cite[slide 38]{Celio2016}.
+
+	TODO: Remove power consumption.
+
+	\subsection{Extensibility}\label{sec:extensibility}
 	What instruction set extensions are there for both ISAs? Who can develop new extensions?
 	\subsection{Ecosystem}
 	Which compilers support ARM and RISC-V? Which operating systems and libraries?
@@ -190,7 +248,7 @@ Alexander Schmid \cite{Akram2017} \cite{Arm2020} \cite{Asanovic2014} \cite{HeuiL
 
 Florian Henneke \cite{Waterman2016} \cite{Ryzhyk2006} \cite{Asanovic2014} \cite{Furber2000} \cite{Microsoft2020} \cite{Greenwaves2020} \cite{Aws2020} \cite{Microsoft2020}
 
-Michael Schneider \cite{50years} \cite{hennessy2012computer} \cite{drechsler2020enhanced} \cite{WisconsinMadison2016} \cite{IEEE2018} \cite{Dirvin2019} \cite{Bandic2019}
+Michael Schneider \cite{Waterman2017} \cite{Arm2020} \cite{George1990} \cite{Waterman2016} \cite{50years} \cite{hennessy2012computer} \cite{drechsler2020enhanced} \cite{WisconsinMadison2016} \cite{IEEE2018} \cite{Dirvin2019} \cite{Bandic2019} \cite{Berkeley2019}
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
