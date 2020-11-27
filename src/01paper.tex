@@ -174,17 +174,13 @@ that can run of that \gls{CPU}. This is especially important in consumer desktop
 	All instructions take 2 parameters, a register to store the value in and an address to load the value from. The address consists of the value stored in a register with an immediate offset.
 	The store instructions SW, SH and SB work in the same way. SW stands for store word, SH store halfword and SB means store byte. The commands are structured in the same way as the loading commands are. The left side of the command is the register to take the value from and the second parameter is the register, containing the address, and the offset, where the value should be stored.  \cite{Berkeley2019} \\
 	ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only a byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value, there are 3 possible ways STR to store the complete register, STRB to store a byte and STRH to store a halfword. These basic load and store commands are followed by: load/store pairs, unscaled offsets and much more. Because there is no such possibility in RISC-V, there is no comparison about them. \cite{Arm2020}
-	
-	To compare the further complexity of the instructions itself, it is important to compare the different instruction formats which are extending the load/store instruction format.
-	In RISC-V the RV32I has different instruction formats. The base-instruction formats (R,I,S,U), the immediate encoding variants (B,J), integer computational instructions containing integer register-immediate instructions and integer register-register operations and NOP instructions, control transfer instructions consisting of unconditional jumps and conditional branches, memory model, control and status register instructions (CSR Instructions, Timer and counters) and environment call and breakpoints as well as the store and load instructions, which are more detailed explained above.
-	In RISC-V the RV64I and the RV128I contain the same instruction formats but with a few internal difference because of the different register size. \cite{Waterman2017}
-	\\
-	The ARMv8 has Branches, Exception generating and System instructions, load and stores, data processing -immediate, data processing - register, data processing - SIMD and floating-point instruction formats. Which are counted less than the RISC-V instruction formats but they are containing much more subformats than the once from RISC-V.
-	TODO: Here the instruction formats of ARM to cover the once of RISC-V. \cite{Arm2020}
-	%Todo: compare maybe the setup of the ARM instructions (are there more different/complex ways to use them??)
-	%Write some stuff comparing machine-level and supervisor level \cite{AndrewWaterman} with 3 basic architecture profiles (Application profil, real-time profil, microcontroller profil\cite{ArmManual} S. 36
-	%godbolt.org
-	%basic comparing between basic
+
+	Additional to the explained load and store instructions both architectures have many other instructions, viewed are both times the clear 32-bit instructions RV32I for RISC-V and A32 for ARMv8.
+	In RISC-V the instructions are summarised to Branch instructions, jump instructions, instructions with immediates, arithmetic/logical ops, instructions with upper immediates.
+	The arithmetic/logical ops are called R-Format instructions and RISC-V has 10 of them.  For the immediates (I-Format) RISC-V has 9 plus the 5 load instructions from above and EBREAK, ECALL as  environment Call and Breakpoints calls. The Store instructions are limited to 3 and the branch instructions to 6 instructions. 2 Upper Immediate instructions and only 1 jump instruction.\cite{Waterman2017}
+	In the ARMv8 \gls{ISA} the instructions are summarised in a different way. 
+	The branch instructions (10 -  5 for conditional and 5 for unconditional branches) is the only overlapping format and already this is bigger in ARM. Further ARMv8 has data-processing instructions (18 standard instructions, 10 shift instructions, 48 multiply instructions, 8 saturating instructions, 14 packing and unpacking instructions, 2 divide instructions, 13 miscellaneous data-processing instructions ). PSTATe and banked register access instructions (5), 22 miscellaneous instructions and 20 instructions to generate and handle exceptions. To complete the ARMv8 instructions the store/load instructions are also basic instructions. In ARMv8 there are 40 different instructions to do so. \cite{Arm2020}
+
 	
 	\subsection{Performance (written by Alexander Schmid)}
 	Code size is the performance parameter most influenced by the \gls{ISA} and not by the \gls{CPU}'s implementation,
