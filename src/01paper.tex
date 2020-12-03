@@ -204,6 +204,23 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	\subsection{Ecosystem}
 	Which compilers support ARM and RISC-V? Which operating systems and libraries?
 
+	%TODO: Format, add sources, formulate new
+
+	Getting access to the ISA is only the first step in producing and offering a self designed silicon.
+	Before this there are several rough main steps to go through:
+	\begin{enumerate}
+		\item Designing the CPU Core.
+		\item Checking for comliance to the ISA.
+		\item Testing the core for formal correctness, function with random data and function with edge case data.
+		\item Finding a factory partner for production.
+		\item Creating a at least a software toolchain for creating and comiling applications on your hardware. The toolchain must also include CMSIS package and should undergo sufficent testing.
+	\end{enumerate}
+	% ARM "Steps designing your own chip"
+	ARM gives you a considerable headstart in this todo list: They already supply a completet CPU Core, which is compliant to their ISAs and tested formally aswell as in function. It is also proven many times in already existing hardware. The ARM package also includes a complete software toolchain which enables chip designers to create their own specced chips whithin the ARM environment. Because you are not able to leave the arm environment, they are also able to offer a complete compiler toolchain and CMSIS packages for all their silicon %anders formulieren
+	extensions. They offer connections to chip foundries who already have experience in manufacturing ARM based silicon.
+
+	When starting with RISC-V, you have to start from the ground up. RISC-V International only supplies the ISA Specification. From there on you have to find your own way. If you want, you could chose to work down the above list yourself, but there is also the alternative to choose from an already designed, probably also compliance checken and tested cpu core. But keep in mind that all the implementations come with different licenses and an different ecosystem aswell. %TODO: Rest der kette...
+
 
 \section{Discussion}
 \label{ref:discussion}
