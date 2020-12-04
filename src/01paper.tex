@@ -268,8 +268,31 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 
 \section{Discussion}
 \label{ref:discussion}
-	\subsection{Advantages of ARM}
-	What are the advantages of ARM compared to RISC-V?
+	\subsection{Performance}
+	32-bit ARM with the T32 extension features a lower code size than RV32IMC in two popular benchmarks \cite{Perotti2020}.
+	This poses a significant advantage on embedded microcontrollers with a small program memory.
+	Currently, this disadvantage can be mitigated on RISC-V with custom ISA extensions, however these
+	pose the risk of excessive fragmentation with different extensions, if they are not standardized.
+	This would make it more difficult for compiler developers to support and optimize for all of the custom
+	RISC-V extensions.
+
+	For 64-bit ARM and RV64G(C), while RISC-V offers a significantly lower code size, it also has a larger
+	dynamic instruction count. The authors of \cite{Celio2016}, after applying a model that takes
+	into account both micro-op generation as well as macro-op fusion, find no difference in cycle count
+	between the two \glspl{ISA}. However, this is based on assumptions about the number of micro-ops that
+	certain ARM instructions break into, that are not verified against actual ARM \glspl{CPU} \cite[slide 40]{Celio2016}.
+
+	A more accurate comparison of the influence of the \gls{ISA} on a \gls{CPU}s cycle count could be gained
+	by simulating two \glspl{CPU} with as many of the same components as possible, adapted for each of the two \glspl{ISA}.
+	This is done for ARM and x86-64 in \cite{Akram2017}.
+
+	Ultimately, the influence of \gls{ISA}-specific characteristics plays a lesser role for a \glspl{CPU}'s performance
+	than the optimization performed for a specific implementation of that \gls{ISA}.
+	As such, the largest factor determining which \gls{ISA} will feature faster processors is simply the amount of investment
+	large companies will put into an \gls{ISA} \cite{Blem2013}.
+	This can be studied by empirically comparing common \glspl{CPU} of both \glspl{ISA}, as done in \cite{Blem2013} for ARM and
+	x86-64, as soon as enough RISC-V \glspl{CPU} are on the market.
+
 	\subsection{Advantages of RISC-V}
 	What are the advantages of RISC-V compared to ARM?
 	\subsection{Future directions and challenges}
