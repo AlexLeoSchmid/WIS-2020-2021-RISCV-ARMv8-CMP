@@ -94,7 +94,7 @@ keyword1, keyowrd2
 
 \section{Background}
 \label{ref:background}
-	\subsection{Instruction Set Architectures}
+	\subsection{Instruction Set Architectures (Alexander Schmid)}
 	An \gls{ISA} refers a specification of instructions that a computer's \gls{CPU} can execute.
 	The \gls{ISA} defines the binary format of these instructions, their semantics and certain aspects of the assembler
 	language associated with that \gls{ISA}.
@@ -109,10 +109,10 @@ keyword1, keyowrd2
 	On desktop computers and servers, the x86-64 architecture has been traditionally dominant,
 	while the ARM architecture is widely used in mobile and embedded devices \cite{Blem2013}.
 
-	\subsection{RISC}
+	\subsection{RISC (Alexander Schmid)}
 	x64 and ARM are examples for two different paradigms in \gls{ISA} design, the \gls{CISC} and \gls{RISC} architecture.
-	Early designs of integrated microprocessors have featured powerful instructions with most instructions allowing access to memory,
-	and a small number of registers, mainly to make programming in assembly easier \cite{George1990}.
+	Early designs of integrated microprocessors have featured powerful instructions with most of them allowing access to memory,
+	and a small number of registers \cite{George1990}. This is mainly done to make programming in assembly easier \cite{George1990}.
 
 	This approach became known as \gls{CISC} in contrast to newer designs using the \gls{RISC} approach.
 	\gls{RISC} \glspl{ISA} feature a larger number of registers with simpler instructions.
@@ -158,7 +158,7 @@ for microcontrollers that are usually very constrained in the size of their prog
 For the other performance aspects, it is debatable to which extent they are influenced by the \gls{CPU}'s instruction set as opposed
 to the concrete implementation of the CPU. \cite{Blem2013} \cite{Akram2017}
 
-\glspl{ISA} often allow for a number of instruction set extensions that may or may not be implemented by a given \gls{CPU}. These usually allow
+\glspl{ISA} often allow for a number of instruction set \textbf{extensions} that may or may not be implemented by a given \gls{CPU}. These usually allow
 faster and more efficient processing of programs for a given use case, such as \gls{SIMD} extensions that optimize signal processing and media applications \cite[page 52]{Arm2020},
 \gls{AES} extensions that optimize cryptography \cite{Arm2015} or \gls{ISA}-extensions with shorter instructions for applications that are constrained in program memory. \cite{Arm2005}
 Having a small base instruction set with many fine grained extensions improves the flexibility of the \gls{ISA}, allowing \glspl{CPU} to be optimized for specific
@@ -166,7 +166,7 @@ use cases, increasing performance and efficiency for those use cases. \gls{ISA} 
 to end users, as a piece of software that uses a certain \gls{ISA} extension can't be executed on \glspl{CPU} that don't implement that extension, potentially
 increasing the number of different versions of that software that need to be distributed.
 
-An \gls{ISA}'s ecosystem refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
+An \gls{ISA}'s \textbf{ecosystem} refers to the software that supports that \gls{ISA}, especially compilers that compile to that \gls{ISA}, operating systems and libraries.
 When developing a new \gls{CPU} it is preferrable to use an \gls{ISA} with a large ecosystem, in order to maximize the amount of software
 that can run on that \gls{CPU}. This is especially important in consumer desktop and mobile devices where a large variety of software is to be executed.
 
@@ -280,19 +280,20 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 
 \section{Discussion}
 \label{ref:discussion}
-	\subsection{Performance}
+	\subsection{Performance (Alexander Schmid)}
 	32-bit ARM with the T32 extension features a lower code size than RV32IMC in two popular benchmarks \cite{Perotti2020}.
 	This poses a significant advantage on embedded microcontrollers with a small program memory.
-	Currently, this disadvantage can be mitigated on RISC-V with custom ISA extensions, however these
+	Currently, this disadvantage can be mitigated on RISC-V with custom ISA extensions.
+	However these
 	pose the risk of excessive fragmentation with different extensions, if they are not standardized.
 	This would make it more difficult for compiler developers to support and optimize for all of the custom
 	RISC-V extensions.
 
-	For 64-bit ARM and RV64G(C), while RISC-V offers a significantly lower code size, it also has a larger
-	dynamic instruction count. The authors of \cite{Celio2016}, after applying a model that takes
-	into account both micro-op generation as well as macro-op fusion, find no difference in cycle count
-	between the two \glspl{ISA}. However, this is based on assumptions about the number of micro-ops that
-	certain ARM instructions break into, that are not verified against actual ARM \glspl{CPU} \cite[slide 40]{Celio2016}.
+	In the case of 64-bit ARM and RV64G(C), while RISC-V offers a significantly lower code size, it also has a larger
+	dynamic instruction count. The authors of \cite{Celio2016} find no difference in cycle count
+	between the two \glspl{ISA}, after applying a model that takes into account both micro-op generation as well as macro-op fusion.
+	However, this is based on assumptions, that are not verified against actual ARM \glspl{CPU}, about the number of micro-ops that
+	certain ARM instructions break into \cite[slide 40]{Celio2016}.
 
 	A more accurate comparison of the influence of the \gls{ISA} on a \gls{CPU}s cycle count could be gained
 	by simulating two \glspl{CPU} with as many of the same components as possible, adapted for each of the two \glspl{ISA}.
