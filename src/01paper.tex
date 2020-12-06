@@ -260,9 +260,10 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 
 	\subsection{Extensibility}\label{sec:extensibility}
 	What instruction set extensions are there for both ISAs? Who can develop new extensions?
+
 	\subsection{Ecosystem (Florian Henneke)}
 	Getting access to the ISA is only the first step in producing and offering self designed silicon.
-	The following steps can be broken down roughly to the subseqent points \cite{ARM2019}:
+	The following steps can be broken down roughly into the subsequent points \cite{ARM2019}:
 	\begin{enumerate}
 		\item Designing the CPU Core.
 		\item Checking for compliance to the ISA \cite{Bartley2020}.
@@ -271,12 +272,12 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 		\item Finding a factory partner for production.
 		\item Set up at least a software toolchain for creating and comiling applications on your hardware. It is also advantageous, if the toolchain contains a hardware abstraction layer and is sufficiently tested.
 	\end{enumerate}
-	ARM gives you a considerable headstart in this todo list: They already supply a completet CPU Core, which is compliant to their ISAs and tested formally aswell as in function. It is also proven many times in already existing hardware. The ARM package also includes a complete software toolchain which enables chip designers to create their own specced chips within the ARM environment. Having a pretty firm ecosystem, they are also able to provide a hardware abstracion layer aswell as a compiler toolchain \cite{CMSIS}. At last they offer connections to chip foundries who already have experience in manufacturing ARM based silicon \cite{ARM2019}.
-	A good ecosystem for the end user, consisting of well tested compiler toolchains \cite{ARMGNU} and operating systems also exists \cite{Microsoft2020}\cite{RedHat}.
+	ARM makes this process significantly easier: They already supply a completed CPU Core, which is compliant to their \glspl{ISA} and tested formally as well as in function. It is also proven many times in existing hardware. The ARM package also includes a complete software toolchain which enables chip designers to create chips according to their own specification within the ARM environment. Having a rather firm ecosystem, they are also able to provide a hardware abstracion layer as well as a compiler toolchain \cite{CMSIS}. Lastly they offer connections to chip foundries who already have experience in manufacturing ARM based silicon \cite{ARM2019}.
+	A good ecosystem for the end user, consisting of well tested compiler toolchains \cite{ARMGNU} and operating systems, also exists \cite{Microsoft2020}\cite{RedHat}.
 
-	What RISC-V currently offers is completely different. The only thing obtained from RISC-V International is the \gls{ISA} definition. This does not mean, that the chip designer must go alone through the above list. With a supportive community for RISC-V you are able to set your own starting point in the design process. For example you could start at a finished, probably already compliance checked and tested core \cite{RVCores} and adapt it to according to your use cases. The core implementation also dictates the choice of design toolchain. If you want to check your extended design, there are already some verification and testing tools available \cite{Bartley2020}. All those cores and tools can however be published under another license than the \gls{ISA} specification. This means the publisher can also limit the freedom, the chip designer has. With a production ready core, you must find a silicon production partner for yourself.
-	At last you have to provide a appropriate toolchain for your chip. This is easy, if your core provider already provides one \cite{SiFive}, that is suitable for your changed core or can be done with community driven toolchain generators \cite{NG}.
-	In case of operating systems the end user is of course able to compile embedded operating systems like Zephyr \cite{LinuxFoundation} or FreeRTOS \cite{Aws2020}, desktop operating systems however are not really supported. Nevertheless it is proven, that linux is able to run on RISC-V based processors \cite{SiFivea}.
+	What RISC-V currently offers is completely different. The only thing obtained from RISC-V International is the \gls{ISA} definition. This does not mean, that the chip designer must go through the aforementioned list on their own. With a supportive community for RISC-V one is able to set one's own starting point in the design process. For example one could start at a finished, probably already compliance checked and tested core \cite{RVCores} and adapt it according to one's use cases. The core implementation also dictates the choice of design toolchain. If one wants to check their extended design, there are already some verification and testing tools available \cite{Bartley2020}. All those cores and tools can however be published under another license than the \gls{ISA} specification. This means the publisher can also limit the freedom that the chip designer has. With a production ready core, one must find a silicon production partner for himself.
+	At last, one has to provide an appropriate toolchain for one's chip. This is easy, if the core provider already provides one \cite{SiFive} that is suitable for one's changed core or can be built with community driven toolchain generators \cite{NG}.
+	In case of operating systems, the end user is of course able to compile embedded operating systems like Zephyr \cite{LinuxFoundation} or FreeRTOS \cite{Aws2020}, desktop operating systems however are not yet supported. Nevertheless it is proven, that Linux is able to run on RISC-V based processors \cite{SiFivea}.
 
 \section{Discussion}
 \label{ref:discussion}
