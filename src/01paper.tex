@@ -95,15 +95,15 @@ keyword1, keyowrd2
 \section{Background}
 \label{ref:background}
 	\subsection{Instruction Set Architectures (Alexander Schmid)}
-	An \gls{ISA} refers a specification of instructions that a computer's \gls{CPU} can execute.
+	An \gls{ISA} refers to a specification of instructions that a computer's \gls{CPU} can execute.
 	The \gls{ISA} defines the binary format of these instructions, their semantics and certain aspects of the assembler
 	language associated with that \gls{ISA} \cite[page 20-23]{Stokes2006}.
 	A program in it's binary form can be executed on any \gls{CPU} that implements the \gls{ISA} and runs the operating system
-	for which the program was compiled for \cite[page 71]{Stokes2006}.
+	for which the program was compiled \cite[page 71]{Stokes2006}.
 
 	As of 2020, there exist many competing \glspl{ISA}, which limits the portability of compiled software.
 	Reasons for this fragmentation include the fact that a \gls{CPU}'s \gls{ISA} influences the \gls{CPU}'s development cost, performance (see chapter \ref{performance})
-	and complexity (see chapter \ref{complexity}) and the fact that \glspl{ISA} are usually protected by patents owned by the developer of that \gls{ISA} (see chapter \ref{businessModels}).
+	and complexity (see chapter \ref{complexity}). Another reason is the fact that \glspl{ISA} are usually protected by patents owned by the developer of that \gls{ISA} (see chapter \ref{businessModels}).
 
 	On desktop computers and servers, the x86-64 architecture has been traditionally dominant,
 	while the ARM architecture is widely used in mobile and embedded devices \cite{Blem2013}.
@@ -111,7 +111,7 @@ keyword1, keyowrd2
 	\subsection{RISC (Alexander Schmid)}
 	x64 and ARM are examples for two different paradigms in \gls{ISA} design, the \gls{CISC} and \gls{RISC} architecture.
 	Early designs of integrated microprocessors have featured powerful instructions with most of them allowing access to memory,
-	and a small number of registers \cite{George1990}. This is mainly done to make programming in assembly easier \cite[page 73]{Stokes2006}.
+	and a small number of registers \cite{George1990}. This is mainly done to make programming in assembly language easier \cite[page 73]{Stokes2006}.
 
 	This approach became known as \gls{CISC} in contrast to newer designs using the \gls{RISC} approach.
 	\gls{RISC} \glspl{ISA} feature a larger number of registers with simpler instructions.
@@ -313,12 +313,11 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	32-bit ARM with the T32 extension features a lower code size than RV32IMC in two popular benchmarks \cite{Perotti2020}.
 	This poses a significant advantage on embedded microcontrollers with a small program memory.
 	Currently, this disadvantage can be mitigated on RISC-V with custom ISA extensions.
-	However these
-	pose the risk of excessive fragmentation with different extensions, if they are not standardized.
+	These custom extensions do however pose the risk of excessive fragmentation, if they are not standardized \cite{Bailey2019}.
 	This would make it more difficult for compiler developers to support and optimize for all of the custom
-	RISC-V extensions.
+	RISC-V extensions and would make it more difficult to deploy precompiled software.
 
-	In the case of 64-bit ARM and RV64G(C), while RISC-V offers a significantly lower code size, it also has a larger
+	In the case of 64-bit ARM and RV64G(C), RISC-V offers a significantly lower code size, but it also has a larger
 	dynamic instruction count. The authors of \cite{Celio2016} find no difference in cycle count
 	between the two \glspl{ISA}, after applying a model that takes into account both micro-op generation as well as macro-op fusion.
 	However, this is based on assumptions, that are not verified against actual ARM \glspl{CPU}, about the number of micro-ops that
