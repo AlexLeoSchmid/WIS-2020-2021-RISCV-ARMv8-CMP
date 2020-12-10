@@ -234,7 +234,7 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	Given that code size is most critical in embedded applications, the Embench benchmark suite is a good benchmark
 	with which to compare code sizes \cite{Patterson2019}. It consists of a number of programs frequently used in embedded
 	applications, such as CRC, signal filtering, AES and QR code reading \cite{Patterson2019}.
-	When compiling the Embench suite for both RV32IMC as well as 32-bit ARM with the Thumb-2 extension for code compression (called T32 in ARMv8, see chapter \ref{complexity}) using GCC 7,
+	When compiling the Embench suite for both RV32IMC (see chapter \ref{sec:extensibility}) as well as 32-bit ARM with the Thumb-2 extension for code compression (called T32 in ARMv8, see chapter \ref{complexity}) using GCC 7,
 	the code for RISC-V is approximately 11\% larger than the code for ARM \cite{Perotti2020}.
 	Part of this gap in code size can be explained by the relative immaturity of the RISC-V implementation of
 	GCC. RISC-V support for GCC was introduced in 2017 and the code size of the Embench suite
@@ -320,8 +320,8 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	In the case of 64-bit ARM and RV64G(C), RISC-V offers a significantly lower code size, but it also has a larger
 	dynamic instruction count. The authors of \cite{Celio2016} find no difference in cycle count
 	between the two \glspl{ISA}, after applying a model that takes into account both micro-op generation as well as macro-op fusion.
-	However, this is based on assumptions, that are not verified against actual ARM \glspl{CPU}, about the number of micro-ops that
-	certain ARM instructions break into \cite[slide 40]{Celio2016}.
+	However, this is based on the assumption that each register writeback is translated into a single micro-op,
+	which is not verified against actual ARM \glspl{CPU} \cite[slide 40]{Celio2016}.
 
 	A more accurate comparison of the influence of the \gls{ISA} on a \gls{CPU}s cycle count could be gained
 	by simulating two \glspl{CPU} with as many of the same components as possible, adapted for each of the two \glspl{ISA}.
@@ -330,7 +330,7 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	Ultimately, the influence of \gls{ISA}-specific characteristics plays a lesser role for a \glspl{CPU}'s performance
 	than the optimization performed for a specific implementation of that \gls{ISA}.
 	As such, the largest factor determining which \gls{ISA} will feature faster processors is simply the amount of investment
-	large companies will put into an \gls{ISA} \cite{Blem2013}.
+	large companies will put into an optimizing \gls{CPU} implementing the \gls{ISA} \cite{Blem2013}.
 	This can be studied by empirically comparing common \glspl{CPU} of both \glspl{ISA}, as done in \cite{Blem2013} for ARM and
 	x86-64, as soon as enough RISC-V \glspl{CPU} are on the market.
 	
@@ -352,7 +352,7 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	ARM has much more instruction formats with much more instructions which makes it more complex to build, but if it is done its more restrict for the future. Complex features, which are maybe not supported in RISC-V or which are not implemented, because the are obsolete, are part of the version of ARM. This is figured out by comparing the formats and mandatory instructions of both the RISC-V and ARM, as it is done in chapter \ref{complexity} and chapter \ref{sec:extensibility}.
 
 	\subsection{Business Model and Ecosystem (Florian Henneke)}
-	Because the Business Model and the Ecosystem are stronly connected from a chip developers perspective, while deciding which architecture to use, they will be discussed together in the following section.
+	Because the Business Model and the Ecosystem are strongly connected from a chip developers perspective, while deciding which architecture to use, they will be discussed together in the following section.
 
 	In summary, there are three main points to consider when choosing a architecture from an economical point of view: the price, how much work you have to put in and how much revenue can be expected.
 
@@ -365,12 +365,68 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	Ultimately the decision depends on who you are (Can you choose low tier ARM licenses and achieve your goal?), what you want to achieve (Is there a future interest in developing more chips or is the effort only for one chip), what resources you have (Can you afford higher development costs for bigger future revenue?) and what risk you can take (Do you want to take the risk of going with a new platform or do you want to take the proven way?).
 
 
-\section{Conclusion and Outlook}
+\section{Conclusion and Outlook (Alexander Schmid)}
 \label{ref:conclusion}
 	\subsection{Summary of results}
-	\subsection{Interpretation of results}
-	\subsection{Future directions}
+	The most striking difference between the two \glspl{ISA} is their business models as described in chapter \ref{businessModels}.
+	ARM sells ready-to-use \gls{CPU} core designs, offers extensive support to their customers and only allows the development of new
+	ARM compatible \gls{CPU} cores with their most expensive license.
+	RISC-V permits anyone to implement a compatible \gls{CPU} free of charge, but offers no services beyond the specification of the \gls{ISA}.
+	Anyone looking to obtain a ready-to-use RISC-V \gls{CPU} core design or requiring support integrating the core into an integrated circuit
+	must obtain those from a third party.
 
+	Another major difference lies in the \glspl{ISA}' complexity and extensibility (chapter \ref{complexity} and \ref{sec:extensibility}).
+	While ARM features a large and complex base \gls{ISA} with only limited support for custom extensions, RISC-V features a much more modular
+	approach with a very small base \gls{ISA} and most features being specified in the form of optional extensions with custom extensions being
+	widespread and encouraged.
+
+	While there are minor differences in code size between the two \glspl{ISA} with ARM having a smaller 32-bit code size and RISC-V having a
+	smaller 64-bit code size, there is no significant inherent difference in execution speed as described in chapter \ref{performance}.
+
+	Lastly, the ecosystem is a major advantage of ARM with extensive toolchain and compiler support in addition to most major operating systems
+	supporting ARM in some form or another, as described in chapter \ref{ecosystem}.
+	In contrast, the only operating systems that can currently be run on RISC-V is Linux along with various embedded and IOT operating systems.
+	No major commercial operating systems currently support RISC-V.
+
+	\subsection{Interpretation of results}
+	RISC-V's permissive licensing model allows for a much lower barrier to entry into the \gls{CPU} market for new designers
+	by eliminating the need to pay large upfront licensing costs.
+	
+	This is compounded by the modularity of the RISC-V \gls{ISA}, allowing designers to quickly build a compliant RISC-V \gls{CPU}
+	by only implementing the base \gls{ISA} and only implementing additional extensions as needed.
+	This modularity is especially useful in embedded applications, where small \glspl{ISA} are preferred due to the need
+	for high power efficiency and a comparatively smaller need to high processing power \cite{Blem2013}.
+
+	This modularity does pose the risk of excessive fragmentation of the \gls{CPU} market, with different \glspl{CPU} supporting
+	different extensions, not allowing software to be reused across these \glspl{CPU}. This fragmentation can however be avoided
+	by \gls{CPU} designers and operating system developers agreeing upon a set of extensions necessary for certain use cases.
+
+	The fact that there are only minor differences in performance between the two \glspl{ISA} shows that RISC-V can, in principle,
+	compete with established \glspl{ISA} in all applications, from embedded to high performance computing.
+
+	The main challenge for RISC-V to break into markets beyond embedded systems, is software support.
+	ARM is the de-facto standard \gls{ISA} for mobile devices and is becoming increasingly relevant in the desktop and laptop markets
+	due to investment from Apple and Google, as mentioned in chapters \ref{businessModels} and \ref{ecosystem}.
+
+	While a bare bones Linux can be run on RISC-V, in order to be relevant in the desktop market, there most likely
+	needs to be Windows or MacOS support for RISC-V \cite{StatCounter2020}. Ideally there also needs to be high performance
+	x86-64 emulation or translation due to the large number of legacy x86-64 applications still used on desktop computers.
+
+	Much more likely however, is for RISC-V to gain market share on mobile devices, given that the Android operating system
+	is based on Linux and most user-space applications run on a \gls{JVM} \cite{Ehringer2010}.
+	Due to this, only the Android operating system itself and its \gls{JVM} need to be ported to RISqwC-V for a majority
+	of mobile applications to become available on RISC-V.
+
+	\subsection{Future directions}
+	As of 2020, only three of the five planned base \glspl{ISA} and only 8 of the 17 planned extensions of RISC-V have been ratified.
+	This shows that the RISC-V \gls{ISA} is still very much in its infancy, nevertheless there has already been significant interest in RISC-V.
+
+	The American embargo of the chinese silicon manufacturer Huawei \cite{Lee2019} in conjunction with the pending acquisition of ARM by the American silicon
+	manufacturer Nvidia \cite{Shead2020} spark uncertainty among ARM's customer base.
+	This could lead to increased investment into RISC-V over ARM, especially by Chinese silicon manufacturers such as Huawei.
+
+	Meanwhile, improved compiler and operating system support for RISC-V remain important challenges for software developers and
+	the open source community.
 
 \section{Overview of Literature}
 Alexander Schmid \cite{Akram2017} \cite{Arm2020} \cite{Asanovic2014} \cite{HeuiLee2001} \cite{Patterson2019} \cite{Perotti2020} \cite{Shore2015} \cite{Waterman2016} \cite{Xu2003}
