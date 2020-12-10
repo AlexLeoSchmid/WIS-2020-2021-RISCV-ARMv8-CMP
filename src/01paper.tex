@@ -311,9 +311,6 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	32-bit ARM with the T32 extension features a lower code size than RV32IMC in two popular benchmarks \cite{Perotti2020}.
 	This poses a significant advantage on embedded microcontrollers with a small program memory.
 	Currently, this disadvantage can be mitigated on RISC-V with custom ISA extensions.
-	These custom extensions do however pose the risk of excessive fragmentation, if they are not standardized \cite{Bailey2019}.
-	This would make it more difficult for compiler developers to support and optimize for all of the custom
-	RISC-V extensions and would make it more difficult to deploy precompiled software.
 
 	In the case of 64-bit ARM and RV64G(C), RISC-V offers a significantly lower code size, but it also has a larger
 	dynamic instruction count. The authors of \cite{Celio2016} find no difference in cycle count
@@ -373,9 +370,9 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	must obtain those from a third party.
 
 	Another major difference lies in the \glspl{ISA}' complexity and extensibility (chapter \ref{complexity} and \ref{sec:extensibility}).
-	While ARM features a large and complex base \gls{ISA} with only limited support for custom extensions, RISC-V features a much more modular
-	approach with a very small base \gls{ISA} and most features being specified in the form of optional extensions with custom extensions being
-	widespread and encouraged.
+	While ARM features a large base \gls{ISA} with only limited support for custom extensions, RISC-V features a more modular
+	approach with a small base \gls{ISA} and most features being specified in the form of optional extensions with custom extensions being
+	encouraged.
 
 	While there are minor differences in code size between the two \glspl{ISA} with ARM having a smaller 32-bit code size and RISC-V having a
 	smaller 64-bit code size, there is no significant inherent difference in execution speed as described in chapter \ref{performance}.
@@ -390,15 +387,9 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	by eliminating the need to pay large upfront licensing costs.
 	
 	This is compounded by the modularity of the RISC-V \gls{ISA}, allowing designers to quickly build a compliant RISC-V \gls{CPU}
-	by only implementing the base \gls{ISA} and only implementing additional extensions as needed.
-	This modularity is especially useful in embedded applications, where small \glspl{ISA} are preferred due to the need
-	for high power efficiency and a comparatively smaller need to high processing power \cite{Blem2013}.
+	by implementing the small base \gls{ISA} and only implementing additional extensions as needed.
 
-	This modularity does pose the risk of excessive fragmentation of the \gls{CPU} market, with different \glspl{CPU} supporting
-	different extensions, not allowing software to be reused across these \glspl{CPU}. This fragmentation can however be avoided
-	by \gls{CPU} designers and operating system developers agreeing upon a set of extensions necessary for certain use cases.
-
-	The fact that there are only minor differences in performance between the two \glspl{ISA} shows that RISC-V can, in principle,
+	The fact that there are only minor differences in performance between the two \glspl{ISA} shows that RISC-V can
 	compete with established \glspl{ISA} in all applications, from embedded to high performance computing.
 
 	The main challenge for RISC-V to break into markets beyond embedded systems, is software support.
@@ -423,8 +414,7 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	%This could lead to increased investment into RISC-V over ARM, especially by Chinese silicon manufacturers such as Huawei.
 	The results of the chapter \ref{ref:concept} and the resulting discussion \ref{ref:discussion} try to compare the advantages and disadvantages of both, the RISC-V and the ARM architecture. Most time the advantages and disadvantages depend on different influences, like personal preferences, resources and so on. To clearly define the benefits and drawbacks of the \glspl{ISA} it would be worth to analyse the surrounding conditions to weigh the results to them. A further question would be, if there are some regions, where RISC-V is clearly the better option compared to ARM and if it is possible for RISC-V to gain a nameable market share of ARM. 
 
-	Meanwhile, improved compiler and operating system support for RISC-V remain important challenges for software developers and
-	the open source community.
+	It remains to be seen if this investment is enough for RISC-V to catch up to ARM in terms of software and operating system support.
 
 \section{Overview of Literature}
 Alexander Schmid \cite{Akram2017} \cite{Arm2020} \cite{Asanovic2014} \cite{HeuiLee2001} \cite{Patterson2019} \cite{Perotti2020} \cite{Shore2015} \cite{Waterman2016} \cite{Xu2003}
