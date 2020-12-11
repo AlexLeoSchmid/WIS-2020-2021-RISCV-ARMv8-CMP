@@ -126,20 +126,19 @@ keyword1, keyowrd2
 	development of new CPU designs \cite{George1990}. 
 
 	\subsection{ARM (Michael Schneider)}
-	ARM (advanced RISC machines) is one of the most common \gls{RISC} based \glspl{ISA}. In 1985 the first ARM processor, at this time named Acorn RISC Machine was released. In 1990 the ARM Ltd. like we know it, was born by a joint venture of Apple, VLSI Technology and Acorn. \cite{Levy2005}
+	In 1985 the first ARM processor, at this time named Acorn RISC Machine was released an in 1990 the ARM Ltd. was born by a joint venture of Apple, VLSI Technology and Acorn \cite{Levy2005}.
 
-	 Now ARM is one of the most licensed an well known manufacturer of \glspl{ISA}. Especially for IOT and mobile devices ARM is very common, wherefore 2016 34\% of shipped SoCs where ARM based. \cite[slide 7-10]{Holdings2018}
+	 Now ARM is one of the most licensed \glspl{ISA}. Especially for IOT and mobile devices ARM is very common, wherefore 2016 34\% of shipped SoCs where ARM based. \cite[slide 7-10]{Holdings2018}
 
-	From the beginning till now ARM is strictly closed source, which means everybody who wants to develop a processor based on the ARM architecture has to pay for the license to legally build a processor (see chapter \ref{businessModels}). ARM has a very long history (up to 35 years) of building architectures and this made it possible to give the ARMv8 a big feature set, good performance (see chapter \ref{performance}), as well as the ability to be extended by extensions (discussed in chapter \ref{sec:extensibility}).
+	From the beginning till now ARM is strictly closed source, which means everybody who wants to develop a processor based on the ARM architecture has to get a license to legally build a processor (see chapter \ref{businessModels}). ARM has a very long history (up to 35 years) of building architectures and this made it possible to give the ARMv8 a big feature set, good performance (see chapter \ref{performance}), as well as the ability to add extensions (discussed in chapter \ref{sec:extensibility}).
 	
 	\subsection{RISC-V (Michael Schneider)}
-	In Work	
-	%RISC-V is developed by UC Berkely and has a much shorter History than ARM. Its major designed to keep the things as simple as possible. RISC-V is as the name lets guess an \gls{RISC} based architecture as well as ARM is. 
-	%geschichte, ...
-	%open source, leichter und ggf kostengünstiger zu erstellen, ...
+	In 2010 the UC Berkeley with director Prof. David Patterson, more precisely professor Krste Asanovi\'{c} and the graduate students Yunsup Lee and Andrew Waterman, started the foundation of the RISC-V instruction. The start of the architecture was made in the \gls{Par Lab}, where also the Chisel hardware construction language, which was used to design many RISC-V procesors, was developed. As it was only a five-year project funded by Intel and Microsoft, later on in 2015 the RISC-V Foundation was founded to create an community of software and hardware innovators and later, in 2018 a collaboration with the Linux Foundation was announced. \cite{International2020}
 
-\section{Concept and Methods (Initial section written by Alexander Schmid)}
-\label{ref:concept}
+	Further RISC-V is developed as a completely open ISA, means it is freely available to academia and industry. The \gls{ISA} trys to avoid "over-architecting" by providing only a small base \gls{ISA} together with different extensions. \cite[page 1]{Waterman2017}
+	
+\section{Concept and Methods (Initial Section by Alexander Schmid)}
+	\label{ref:concept}
 
 Given that the goal of this paper is to compare the two \glspl{ISA}
 across a set of criteria that are relevant to semiconductor companies when evaluating which \gls{ISA} to use with a new CPU design,
@@ -198,33 +197,32 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	\label{complexity}
 	Risc-V and ARMv8 are both \gls{RISC} based architectures but still different in complexity e.g amount of different implementations and the way to extend the \gls{ISA}, the different instruction formats and assembly operations. In RISC-V the only mandatory instruction set is the Integer instruction set. Those base integer instructions cannot be redefined, only extended by optional instruction sets \cite[page 3f]{Waterman2017}. Further details about the extensions are in chapter \ref{sec:extensibility}.
 	
-	ARM instead defines the ARMv8 architecture in a completely different way. The ARMv8 already supports many more extensions in the basic version, also called v8.0 \cite[page A2-60]{Arm2020}. Further extensions are available in later versions, as explained in the chapter \ref{sec:extensibility}.	
+	ARM instead defines the ARMv8 architecture in a completely different way. The ARMv8 already supports many more extensions in the basic version, also called v8.0 \cite[page 60]{Arm2020}. Further extensions are available in later versions, as explained in the chapter \ref{sec:extensibility}.	
 	%Because almost all the optional extensions of RISC-V are covered by the basic v8.0, the ARMv8, regarding only the instructions, is at least as complex as a fully extended RISC-V architecture. 
 	%All those additional extensions like v8.1 etc. makes the architecture much more complex than the full extended RISC-V.
 
 	The different \glspl{ISA} are able to implement the explained instruction sets in various ways.
 	The RISC-V architecture is able to implement the instruction sets in 3 different word length, a 32-bit (RV32I), a 64-bit (RV64I) and a 128-bit version (RV128I).
-	For the 32-bit and the 64-bit implementations are also multiple subversions available, RV32E and RV32G/RV64G. For 128-bit, RV128I is the only 128-bit implementation so far. RV32E is a version with only 15 instead of 31 registers. The subversion RV32G/RV64G is less a own version than a stable release. The RV32G/RV64G combines a basic \gls{ISA} (RV32I or RV64I) plus different selected standard extensions (IMAFD), which is explained in chapter \ref{sec:extensibility}). \cite[page 3ff ]{Waterman2017} 
+	For the 32-bit and the 64-bit implementations are also multiple subversions available, RV32E and RV32G/RV64G. For 128-bit, RV128I is the only 128-bit implementation so far. RV32E is a version with only 15 instead of 31 registers. The subversion RV32G/RV64G is less a own version than a stable release. The RV32G/RV64G combines a basic \gls{ISA} (RV32I or RV64I) plus the different selected standard extensions IMAFD, which are explained in chapter \ref{sec:extensibility}. \cite[page 3ff]{Waterman2017} 
 
 	Also ARMv8 has different implementations, A64, A32 and T32. A64 is the 64-bit version and A32, T32  are both 32-bit versions.
-	AArch64 and AArch32 are two different execution states in ARM (AArch64 for 64-bit and AArch32 for 32-bit). These execution states support the A64 instruction set in AArch64 and A32 and T32 in AArch32. While A32 uses fixed 32-bit instruction encodings, T32 is variable, which means it uses both 16-bit and 32-bit instructions. \cite[page A1-38]{Arm2020}
+	AArch64 and AArch32 are two different execution states in ARM (AArch64 for 64-bit and AArch32 for 32-bit). These execution states support the A64 instruction set in AArch64 and A32 and T32 in AArch32. While A32 uses fixed 32-bit instruction encodings, T32 is variable, which means it uses both 16-bit and 32-bit instructions. \cite[page 38]{Arm2020}
 	% wieder einkommentieren wen noch Wörter übrig.	
 	%This is good to optimize your code, because a common instruction selection rule says, if a 16-bit encoding and a 32-bit encoding are available, the 16-bit is the one you should use, to optimize the code density. \cite{Arm2020}
 	
-	To complete the overview in a, for users more abstract point of view, two basic assembler commands (load and store) and the different instruction formats are compared.
-	To load a value from a RISC-V register, LW, LH or LB is used. The "L" means load and the following characters stand for word (32 bit), halfword (16 bit) and byte. LH and LB are signed and can be extended by an "U" (LHU, LBU) to load unsigned values. \cite[page 18]{Waterman2017}
-	All instructions take 2 parameters, a register to store the value in and an address to load the value from. The address consists of the value stored in a register with an immediate offset.
-	The store instructions SW, SH and SB work in the same way. SW stands for store word, SH store halfword and SB means store byte. The commands are structured in the same way as the loading commands are. The left side of the command is the register to take the value from and the second parameter is the register, containing the address, and the offset, where the value should be stored.  \cite[slide 30ff]{Berkeley2019} 
+	Further the assembly instructions, demonstrated with store/load, and also the related formats are different for ARM and RISC-V.
+	To load a value from a RISC-V register, LW, LH or LB is used. The "L" means load and the following characters stand for word (32 bit), halfword (16 bit) and byte. LH and LB are signed and can be extended by an "U" (LHU, LBU) to load unsigned values. Those instructions take 2 registers together with an immediate offset. \cite[page 18f]{Waterman2017}
 
-	ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only a byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value, there are 3 possible ways STR to store the complete register, STRB to store a byte and STRH to store a halfword. These basic load and store commands are followed by: load/store pairs, unscaled offsets and much more. \cite[C3-207 - C3-218]{Arm2020}
+	The store instructions SW, SH and SB are structured in the same way. SW stands for store word, SH store halfword and SB means store byte. The instructions take again two registers, together with an offset.  \cite[slide 30ff]{Berkeley2019} 
+
+	ARM instead has a few more instructions but the basics are almost the same. The (LDR) command can be extended by an B to load only a byte, SB to load a signed byte, H to load a half word, SH to load an signed halfword and SW to load a signed word. To store a value, there are 3 possible ways STR to store the complete register, STRB to store a byte and STRH to store a halfword. These basic load and store commands are followed by: load/store pairs, unscaled offsets and much more. \cite[page 207 - 218]{Arm2020}
 
 	The explained load and store instructions are, just like all other instructions defined in a special format.
 	In RISC-V (RV32I) the instructions are summarised to Branch instructions, jump instructions, store instructions, instructions with immediates, arithmetic/logical ops and instructions with upper immediates.
-	In total the six different formats hold 38 different instructions. 
-	The arithmetic/logical ops (R-Format) instructions using 3 register inputs, e.g. the add command takes 2 source registers and as a third one, the destination register to store the sum of the 2 source registers.
-	The immediate (I-Format) and the upper immediate (U-Format) work in a similar way. Both add an immediate to the source register, but I-type operations only have an immediate up to 12-bit -- which is also supported by load instructions -- and U-type operations have an immediate up to 20-bit. Because of the higher amount of immediate bits, the upper immediates only contain 1 register. Branching (B-Format) instructions -- mostly used for loops -- as well as store (S-Format) instructions take to registers and both do not write values to the register file. As last (J-Format) jump instructions are used to jump to a specific address, to define 32-bit address a immediate together with a destination register is used. \cite[slide 10 -64]{Ho}
+	The arithmetic/logical ops (R-Format) instructions using 3 register inputs, e.g. the add command takes 2 source registers and as a third one, the destination register to store the result.
+	The immediate (I-Format) and the upper immediate (U-Format) work in a similar way. Both add an immediate to the source register, but I-type operations only have an immediate up to 12-bit -- which is also supported by load instructions -- and U-type operations have an immediate up to 20-bit. Because of the higher amount of immediate bits, the upper immediates only contain 1 register. Branching (B-Format) instructions -- mostly used for loops -- as well as store (S-Format) instructions take two registers. As last (J-Format) jump instructions are used to jump to a specific address, to define 32-bit address a immediate together with a destination register is used. \cite[slide 10 -64]{Ho}
 	
-	In the ARMv8 \gls{ISA} (A32) the instructions are structured in a different way, as well as the base version has much more different instructions, e.g. already more than 40 different load and store instructions. ARM contains, data-processing and miscellaneous instructions, Load/Store Word (immediate, literal), Load/Store Word (register), media, branch, system register access and unconditional instructions.	Each instruction is encoded by a 32 bit word containing a condition at the highest positions bits[31:28], followed by an op0 (3-bit) field to define the type of instruction (explained above). For every one of the 7 formats further definitions are done and deeper lets say subformats make more specifications for the structure. There are the clear definitions about source and destination register made as well as the size of the immediate is defined. \cite[page 4218 - 4278]{Arm2020}.
+	In the ARMv8 \gls{ISA} (A32) the instructions are structured in a different way, as well as the base version has much more different instructions, e.g. already more than 40 different load and store instructions. ARM contains, data-processing and miscellaneous instructions, Load/Store Word (immediate, literal), Load/Store Word (register), media, branch, system register access and unconditional instructions.	Each instruction is encoded by a 32 bit word containing a condition at the highest positions bits[31:28], followed by an op0 (3-bit) field to define the type of instruction). For every one of the 7 formats further definitions are done and deeper lets say subformats make more specifications for the structure. There are the clear definitions about source and destination registers as well as the size of the immediate are made. \cite[page 4218 - 4278]{Arm2020}.
 	
 	\subsection{Performance (Alexander Schmid)}
 	\label{performance}
@@ -268,14 +266,14 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 
 
 	\subsection{Extensibility (Michael Schneider)}\label{sec:extensibility}
-	Extensibility is very important to build a tailored CPU to the specified needs. Therefore \glspl{ISA} like RISC-V and ARMv8 define extensions in different ways. While RISC-V defines the basic integer instructions as the only mandatory instruction set \cite[page 3f]{Waterman2017}, ARMv8 defines the more extended ARMv8.0 as the basic version \cite[page 60]{Arm2020}.
+	To allow to tailor there \glspl{ISA} to specific needs,  RISC-V and ARMv8 define extensions in different ways. While RISC-V defines the basic integer instructions as the only mandatory instruction set \cite[page 3f]{Waterman2017}, ARMv8 defines the more extended ARMv8.0 as the basic version \cite[page 60]{Arm2020}.
 	
-	RISC-V supports in addition to the integer instructions different extensions. To mark the implemented extensions, representable letter are used. 13 extensions are provided and everyone can add new features on top of the \gls{ISA}, as followes. The M extension for integer multiplication and division, A extension for atomic instructions (needs additional hardware to be emulated), C extension for compressed instructions, B extension for bit manipulations, J extension to understand dynamically translated languages, T extension to work with transactional memory, P extension for Packed-SIMD instructions and the N extension to support User-Level interrupts. To work with further number formats (floats, vectors) additional to standard integers, V extension (vectors), F extension (single-precision floating-point), D extension (double-precision floating-point), Q extension (quad-precision floating-point) and L extension (decimal floating-point) are defined. The implemented extensions further give the name to the \gls{ISA}, e.g. if single floating-points and vectors extend a RV32I together with the integer multiplication, the \gls{ISA} will be named RV32IMFV. \cite[page31-52, 71-103]{Waterman2017}
+	RISC-V supports in addition to the integer instructions different extensions. To mark the implemented extensions, representable letters are used. 13 extensions are provided and everyone can add new features on top of the \gls{ISA}, as followes. The M extension for integer multiplication and division, A extension for atomic instructions, C extension for compressed instructions, B extension for bit manipulations, J extension to understand dynamically translated languages, T extension to work with transactional memory, P extension for Packed-SIMD instructions and the N extension to support User-Level interrupts. To work with further number formats (floats, vectors) additional to standard integers, V extension (vectors), and the extensions F, D, Q and L are defined for single-, double-, quad- percision and decimal floating points. The implemented extensions further give the name to the \gls{ISA}, e.g. if single floating-points and vectors extend a RV32I together with the integer multiplication, the \gls{ISA} will be named RV32IMFV. \cite[page 31-52, 71-103]{Waterman2017}
 	
-	ARM provides extensions in a different way. The \gls{ISA} has a base version which contains almost all extensions of RISC-V, called ARMv8.0. The ARMv8.0 is already able to work with vectors and floating-points and it is also able to multiply and divide integers. The higher versions of ARMv8 (ARMv8.1 up to ARMv8.6) add further additional requirements and architectural features. Only the version ARMv8.4 adds only architectural features and no further requirements. \cite[60ff]{Arm2020}
+	ARM provides extensions in a different way. The \gls{ISA} has a base version which contains almost all extensions of RISC-V, called ARMv8.0 (uses A32/T32 or A64 with further extensions) \cite[page 60]{Arm2020}. The ARMv8.0 is already able to work with vectors and floating-points \cite[page 40- 50]{Arm2020}. The higher versions of ARMv8 (ARMv8.1 up to ARMv8.6) add further additional requirements and architectural features. Only the version ARMv8.4 adds only architectural features and no further requirements. \cite[page 60ff]{Arm2020}
 	
 	Additional to the different versions of the \gls{ISA}, both provide to create custom extensions.
-	To create a RISC-V custom extension two steps are important: defining the instructions and include the instruction to the application \cite[page 16 - 21]{Limited2019}. To realise these steps different tools can be used, for example the OVP APIs, which are helpful to simulate the extended processor model for simpler tests and creation of a custom instruction \cite{Imperas}.
+	To create a RISC-V custom extension two steps are important: defining the instructions and include the instruction to the application \cite[page 16 - 21]{Limited2019}. To realise these steps different tools can be used, for example the OVP APIs, which are helpful to simulate the extended processor model \cite{Imperas}.
 	To define the instructions, the first step is the decoding of the instruction, to define the fixed fields for instruction class and the fields for source and result register. Later on the defined decoding will be used to decode the instructions from the PC. The instruction behaviour can be done in two different ways, either by simply using a C algorithm function or by using the VMI Morph Time Functions which is the recommended approach. Finally the custom instructions can be used in C applications after they are added to the processor model. \cite[page 16 - 21]{Limited2019}
 	
 	ARM added also the possibility to create customized extensions. So far this is only supported for Cortex-M33, but in 2021 ARM wants to add support for the new Cortex-M55 as well. Accelerators can be categorized in the 3 different types. Memory mapped accelerators (connected to memory bus), coprocessor interface (allows to build closely coupled accelerators) and tightly to the CPU coupled accelerators. 
@@ -332,21 +330,20 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	x86-64, as soon as enough RISC-V \glspl{CPU} are on the market.
 	
 	\subsection{Extensibility (Michael Schneider)} \label{dis:Extensibility}
-	To discuss the extensibility of the architectures, two different ways to extend \glspl{ISA} need to be considered. The RISC-V architecture has only one mandatory component (integer instruction set) \cite[page 3f]{Waterman2017}, while the basic ARM version (ARMv8.0) supports already many extension \cite[page 8120] {Arm2020}. 
-	This results for RISC-V in an only as complex as needed CPU, because only the mandatory instruction sets have to be implemented \cite[page 3f]{Waterman2017}. The ARM version instead, which includes a big amount of instructions, results in an maybe more complex CPU (unnecessary implemented instructions). Related to the realisation of extensions, as shown in chapter \ref{sec:extensibility}, the ARM \gls{ISA} forces to implement instructions and features which are maybe not mandatory for the use of the CPU, but could be usefull in the future.
+	To discuss the extensibility of the architectures, two different ways to extend \glspl{ISA} need to be considered, the use of defined standard extensions and the use of custom extensions. 
 	
-	ARM also has the bigger set of instructions, extensions and operations compared to RISC-V, as it's shown in \ref{sec:extensibility}, what makes it better adjustable for more complex CPUs as with the limitations of RISC-V.
+	The RISC-V architecture has only one mandatory component (integer instruction set) \cite[page 3f]{Waterman2017}, while the basic ARM version (ARMv8.0) supports already many extension \cite[page 8120] {Arm2020}. This results for RISC-V in an only as complex as needed CPU, because only the mandatory instruction sets have to be implemented \cite[page 3f]{Waterman2017}. The ARM version instead, which includes a big amount of instructions, results in an maybe more complex CPU (unnecessary implemented instructions). Related to the realisation of extensions, as shown in chapter \ref{sec:extensibility}, the ARM \gls{ISA} forces to implement instructions and features which are maybe not mandatory for the use of the CPU, but could be usefull in the future.
 
-	In form of custom extensions it depends on the personal preferences. While ARM is very strict and a official witepaper \cite{LauranneChoquin2020} defines the way to do, RISC-V doesn't define a official way and there are a lot of tool triggered projections like the one from Imperas \cite{Limited2019} are given, but the loose definition of RISC-V makes it a bit more complex to understand the process.
+	In form of custom extensions it depends on the personal preferences. While ARM is very strict and a official white paper \cite{LauranneChoquin2020} defines the way to do, RISC-V doesn't define a official way and there are a lot of tool triggered projections, like the one from Imperas \cite{Limited2019}, are given, but the loose definition of RISC-V makes it a bit more complex to understand the process.
 	
 	\subsection{Complexity (Michael Schneider)}
 	The complexity is influenced by different aspects, as shown in chapter \ref{complexity}.
-	While the concept of extensions leads to a simpler CPU for RISC-V, the possible overhead of ARM could be a solid solution for the future (see chapter \ref{dis:Extensibility}).
-	Because ARM has much more instructions it is more difficult to understand the differences between every single instruction. RISC-V has instead a more limited amount of instructions and the difference between each instruction is more transparent. (see chapter \ref{complexity})
+	 Due to the higher amount of instructions in ARM (see chapter \ref{complexity}) it is more difficult to understand the differences between every single instruction. RISC-V instead has less instructions that is why the difference between each instruction is more transparent. 
+	 For the higher amount of instructions ARM has also more different instruction formats, which are a bit variable due to the different subversions, as the RISC-V format (see chapter \ref{complexity}).
+	%Also the differences in the base versions with corresponding extensions (shown in chapter \ref{sec:extensibility}) and the amount of instructions and formats (elaborated in \ref{complexity}) lead to differences in complexity.
 	
-	The different instructions give the possibility to write the assembly code in more different ways, but it makes also harder to understand all the differences between the instructions. That ARMv8 has more instructions can also be reduced to the different models of the extensions (shown in chapter \ref{sec:extensibility}) and the amount of instructions and formats (elaborated in \ref{complexity}). ARM has for the higher amount of instructions also more different instruction formats, which are a bit more variable due to the different subversions, as the RISC-V format (see chapter \ref{complexity}).
-	
-	ARM has much more instruction formats with much more instructions which makes it more complex to build, but if it is done its more restrict for the future. Complex features, which are maybe not supported in RISC-V or which are not implemented, because the are obsolete, are part of the version of ARM. This is figured out by comparing the formats and mandatory instructions of both the RISC-V and ARM, as it is done in chapter \ref{complexity} and chapter \ref{sec:extensibility}.
+	Both \glspl{ISA} define a way for 32-bit and 64-bit. While ARM defines with T32 a version, which works with 16-bit and 32-bit \cite[page 38]{Arm2020}, RISC-V defines a version for 128-bit \cite[page 3ff]{Waterman2017}. As the suitability of the format of the \gls{ISA} depends on the usage, also the definition, if it is better to define a 128-bit version or a version for 16-bit and 32-bit depends on the usage of the \gls{ISA}.
+	%ARM has much more instruction formats with much more instructions which makes it more complex to build, but if it is done its more restrict for the future. Complex features, which are maybe not supported in RISC-V or which are not implemented, because the are obsolete, are part of the version of ARM. This is figured out by comparing the formats and mandatory instructions of both the RISC-V and ARM, as it is done in chapter \ref{complexity} and chapter \ref{sec:extensibility}.
 
 	\subsection{Business Model and Ecosystem (Florian Henneke)}
 	Because the Business Model and the Ecosystem are strongly connected from a chip developers perspective, while deciding which architecture to use, they will be discussed together in the following section.
@@ -405,13 +402,27 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	ported to RISC-V for a majority of mobile applications to
 	become available on RISC-V.
 
-	\subsection{Future directions}
-	As of 2020, only three of the five planned base \glspl{ISA} and only 8 of the 17 planned extensions of RISC-V have been ratified.
-	This shows that the RISC-V \gls{ISA} is still in its infancy, nevertheless there has already been significant interest in RISC-V.
+	The main challenge for RISC-V to break into markets beyond embedded systems, is software support.
+	ARM is the de-facto standard \gls{ISA} for mobile devices and is becoming increasingly relevant in the desktop and laptop markets
+	due to investment from Apple and Google, as mentioned in chapters \ref{businessModels} and \ref{ecosystem}.
 
-	The American embargo of the chinese silicon manufacturer Huawei \cite{Lee2019} in conjunction with the pending acquisition of ARM by the American silicon
-	manufacturer Nvidia \cite{Shead2020} spark uncertainty among ARM's customer base.
-	This could lead to increased investment into RISC-V over ARM, especially by Chinese silicon manufacturers such as Huawei.
+	While a bare bones Linux can be run on RISC-V, in order to be relevant in the desktop market, there most likely
+	needs to be Windows or MacOS support for RISC-V \cite{StatCounter2020}. Ideally there also needs to be high performance
+	x86-64 emulation or translation due to the large number of legacy x86-64 applications still used on desktop computers.
+
+	Much more likely however, is for RISC-V to gain market share on mobile devices, given that the Android operating system
+	is based on Linux and most user-space applications run on a \gls{JVM} \cite{Ehringer2010}.
+	Due to this, only the Android operating system itself and its \gls{JVM} need to be ported to RISqwC-V for a majority
+	of mobile applications to become available on RISC-V.
+
+	\subsection{Future directions (Michael Schneider)}
+	%As of 2020, only three of the five planned base \glspl{ISA} and only 8 of the 17 planned extensions of RISC-V have been ratified.
+	%This shows that the RISC-V \gls{ISA} is still very much in its infancy, nevertheless there has already been significant interest in RISC-V.
+
+	%The American embargo of the chinese silicon manufacturer Huawei \cite{Lee2019} in conjunction with the pending acquisition of ARM by the American silicon
+	%manufacturer Nvidia \cite{Shead2020} spark uncertainty among ARM's customer base.
+	%This could lead to increased investment into RISC-V over ARM, especially by Chinese silicon manufacturers such as Huawei.
+	The results of the chapter \ref{ref:concept} and the resulting discussion \ref{ref:discussion} try to compare the advantages and disadvantages of both, the RISC-V and the ARM architecture. Most time the advantages and disadvantages depend on different influences, like personal preferences, resources and so on. To clearly define the benefits and drawbacks of the \glspl{ISA} it would be worth to analyse the surrounding conditions to weigh the results to them. A further question would be, if there are some regions, where RISC-V is clearly the better option compared to ARM and if it is possible for RISC-V to gain a nameable market share of ARM. 
 
 	It remains to be seen if this investment is enough for RISC-V to catch up to ARM in terms of software and operating system support.
 
@@ -420,7 +431,7 @@ Alexander Schmid \cite{Akram2017} \cite{Arm2020} \cite{Asanovic2014} \cite{HeuiL
 
 Florian Henneke \cite{Waterman2016} \cite{Ryzhyk2006} \cite{Asanovic2014} \cite{Furber2000} \cite{Microsoft2020} \cite{Greenwaves2020} \cite{Aws2020} \cite{Microsoft2020}
 
-Michael Schneider \cite{Waterman2017} \cite{Arm2020} \cite{George1990} \cite{Waterman2016} \cite{50years} \cite{hennessy2012computer} \cite{drechsler2020enhanced} \cite{WisconsinMadison2016} \cite{IEEE2018} \cite{Dirvin2019} \cite{Bandic2019} \cite{Berkeley2019}
+Michael Schneider \cite{Waterman2017} \cite{Arm2020} \cite{Ho} \cite{Imperas} \cite{International2020} \cite{Levy2005} \cite{Berkeley2019} \cite{Holdings2018} \cite{Limited2019} \cite{LauranneChoquin2020}
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
