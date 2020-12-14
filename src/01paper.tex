@@ -12,9 +12,10 @@
 
 %additional packages
 %\usepackage[ngerman]{babel}
-\usepackage[utf8]{inputenc} 
-\usepackage{hyperref} 
-\usepackage{url}   
+\usepackage[utf8]{inputenc}
+%Added option hyphens to seperate links at -
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref} 
+%\usepackage{url}
 %%fuer abkuerzungen begin
 \usepackage[acronym,hyperfirst = false]{glossaries}
 \glsdisablehyper
