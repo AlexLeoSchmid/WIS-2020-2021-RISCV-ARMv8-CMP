@@ -135,12 +135,12 @@ ARM, ARMv8, RISC-V, RISC, CISC, ISA, business model, licensing, complexity, inst
 
 	 Now ARM is one of the most licensed \glspl{ISA}. Especially for IOT and mobile devices ARM is very common, wherefore 2016 34\% of shipped SoCs where ARM based. \cite[slide 7-10]{Holdings2018}
 
-	From the beginning till now ARM is strictly closed source, which means everybody who wants to develop a processor based on the ARM architecture has to get a license to legally build a processor (see chapter \ref{businessModels}). ARM has a very long history (up to 35 years) of building architectures and this made it possible to give the ARMv8 a big feature set, good performance (see chapter \ref{performance}), as well as the ability to add extensions (discussed in chapter \ref{sec:extensibility}).
+	From the beginning until now ARM is strictly closed source, which means everybody who wants to develop a processor based on the ARM architecture has to get a license to legally build a processor (see chapter \ref{businessModels}). ARM has a very long history (up to 35 years) of building architectures and this made it possible to give the ARMv8 a big feature set, good performance (see chapter \ref{performance}), as well as the ability to add extensions (discussed in chapter \ref{sec:extensibility}).
 	
 	\subsection{RISC-V (Michael Schneider)}
-	In 2010 the UC Berkeley with director Prof. David Patterson, more precisely professor Krste Asanovi\'{c} and the graduate students Yunsup Lee and Andrew Waterman, started the foundation of the RISC-V instruction. The start of the architecture was made in the \gls{Par Lab}, where also the Chisel hardware construction language, which was used to design many RISC-V procesors, was developed. As it was only a five-year project funded by Intel and Microsoft, later on in 2015 the RISC-V Foundation was founded to create an community of software and hardware innovators and later, in 2018 a collaboration with the Linux Foundation was announced. \cite{International2020}
+	In 2010 the UC Berkeley with director Prof. David Patterson, more precisely professor Krste Asanovi\'{c} and the graduate students Yunsup Lee and Andrew Waterman, started the foundation of the RISC-V \gls{ISA}. The start of the architecture was made in the \gls{Par Lab}, where also the Chisel hardware construction language, which was used to design many RISC-V processors, was developed. As it was only a five-year project funded by Intel and Microsoft, later on in 2015 the RISC-V Foundation was founded to create an community of software and hardware innovators and later, in 2018 a collaboration with the Linux Foundation was announced. \cite{International2020}
 
-	Further RISC-V is developed as a completely open ISA, means it is freely available to academia and industry. The \gls{ISA} trys to avoid "over-architecting" by providing only a small base \gls{ISA} together with different extensions. \cite[page 1]{Waterman2017}
+	Further, RISC-V is developed as a completely open ISA, means it is freely available to academia and industry. The \gls{ISA} tries to avoid "over-architecting" by providing only a small base \gls{ISA} together with different extensions. \cite[page 1]{Waterman2017}
 	
 \section{Concept and Methods (Initial Section by Alexander Schmid)}
 	\label{ref:concept}
@@ -334,21 +334,21 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	This can be studied by empirically comparing common \glspl{CPU} of both \glspl{ISA}, as done in \cite{Blem2013} for ARM and
 	x86-64, as soon as enough RISC-V \glspl{CPU} are on the market.
 	
-	\subsection{Extensibility (Michael Schneider)} \label{dis:Extensibility}
-	To discuss the extensibility of the architectures, two different ways to extend \glspl{ISA} need to be considered, the use of defined standard extensions and the use of custom extensions. 
-	
-	The RISC-V architecture has only one mandatory component (integer instruction set) \cite[page 3f]{Waterman2017}, while the basic ARM version (ARMv8.0) supports already many extension \cite[page 8120] {Arm2020}. This results for RISC-V in an only as complex as needed CPU, because only the mandatory instruction sets have to be implemented \cite[page 3f]{Waterman2017}. The ARM version instead, which includes a big amount of instructions, results in an maybe more complex CPU (unnecessary implemented instructions). Related to the realisation of extensions, as shown in chapter \ref{sec:extensibility}, the ARM \gls{ISA} forces to implement instructions and features which are maybe not mandatory for the use of the CPU, but could be usefull in the future.
-
-	In form of custom extensions it depends on the personal preferences. While ARM is very strict and a official white paper \cite{LauranneChoquin2020} defines the way to do, RISC-V doesn't define a official way and there are a lot of tool triggered projections, like the one from Imperas \cite{Limited2019}, are given, but the loose definition of RISC-V makes it a bit more complex to understand the process.
-	
 	\subsection{Complexity (Michael Schneider)}
 	The complexity is influenced by different aspects, as shown in chapter \ref{complexity}.
-	 Due to the higher amount of instructions in ARM (see chapter \ref{complexity}) it is more difficult to understand the differences between every single instruction. RISC-V instead has less instructions that is why the difference between each instruction is more transparent. 
-	 For the higher amount of instructions ARM has also more different instruction formats, which are a bit variable due to the different subversions, as the RISC-V format (see chapter \ref{complexity}).
+	 Due to the higher amount of instructions in ARM (see chapter \ref{complexity}) it is more difficult to understand the differences between every single instruction. RISC-V instead has less instructions that is why the difference between each instruction is easier to grasp. 
+	 For the higher amount of instructions ARM has also more instruction formats, which are, compared to RISC-V, a bit variable due to the different subversions (see chapter \ref{complexity}).
 	%Also the differences in the base versions with corresponding extensions (shown in chapter \ref{sec:extensibility}) and the amount of instructions and formats (elaborated in \ref{complexity}) lead to differences in complexity.
 	
-	Both \glspl{ISA} define a way for 32-bit and 64-bit. While ARM defines with T32 a version, which works with 16-bit and 32-bit \cite[page 38]{Arm2020}, RISC-V defines a version for 128-bit \cite[page 3ff]{Waterman2017}. As the suitability of the format of the \gls{ISA} depends on the usage, also the definition, if it is better to define a 128-bit version or a version for 16-bit and 32-bit depends on the usage of the \gls{ISA}.
+	Both \glspl{ISA} define a way for 32-bit and 64-bit. While ARM defines with T32 a version, which works with 16-bit and 32-bit \cite[page 38]{Arm2020}, RISC-V provides the C-extension for 16-bit instruction encoding for the 32-bit version (RV32), the 64-bit version (RV64) and the 128-bit version (RV128) \cite[page67]{Waterman2017}.
 	%ARM has much more instruction formats with much more instructions which makes it more complex to build, but if it is done its more restrict for the future. Complex features, which are maybe not supported in RISC-V or which are not implemented, because the are obsolete, are part of the version of ARM. This is figured out by comparing the formats and mandatory instructions of both the RISC-V and ARM, as it is done in chapter \ref{complexity} and chapter \ref{sec:extensibility}.
+
+\subsection{Extensibility (Michael Schneider)} \label{dis:Extensibility}
+	To discuss the extensibility of the architectures, two different ways to extend \glspl{ISA} need to be considered, the use of defined standard extensions and the use of custom extensions. 
+	
+	The RISC-V architecture has only one mandatory component (integer instruction set) \cite[page 3f]{Waterman2017}, while the basic ARM version (ARMv8.0) includes already many extension \cite[page 8120] {Arm2020}. This results for RISC-V in an only as complex as needed CPU, because only the mandatory instruction sets have to be implemented \cite[page 3f]{Waterman2017}. The ARM version instead, which includes a large amount of instructions, results in a perhaps more complex CPU (unnecessarily implemented instructions). Related to the realisation of extensions, as shown in chapter \ref{sec:extensibility}, the ARM \gls{ISA} forces to the implementation of instructions and features, which are maybe not needed for the given CPU, but could be useful in the future.
+
+	The two \glspl{ISA} feature different approaches to custom extensions, which one is better depends on personal preference. While ARM is very strict and a official white paper \cite{LauranneChoquin2020} defines the way to do, RISC-V doesn't define a official way and there are a lot of tool triggered projections, like the one from Imperas \cite{Limited2019}, are given, but the loose definition of RISC-V makes it a bit more complex to understand the process.
 
 	\subsection{Business Model and Ecosystem (Florian Henneke)}
 	Because the Business Model and the Ecosystem are strongly connected from a chip developers perspective, while deciding which architecture to use, they will be discussed together in the following section.
@@ -364,9 +364,9 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	Ultimately the decision depends on what type of instition you represent (Can you choose low tier ARM licenses and achieve your goal?), what you want to achieve (Is there a future interest in developing more chips or is the effort only for one chip?), what resources you have (Can you afford higher development costs for bigger future revenue?) and what risk you can take (Do you want to take the risk of going with a new platform or do you want to take the proven way?).
 
 
-\section{Conclusion and Outlook (Alexander Schmid)}
+\section{Conclusion and Outlook}
 \label{ref:conclusion}
-	\subsection{Summary of results}
+	\subsection{Summary of results (Alexander Schmid)}
 	The most striking difference between the two \glspl{ISA} is their business models as described in chapter \ref{businessModels}.
 	ARM sells ready-to-use \gls{CPU} core designs, offers extensive support to their customers and only allows the development of new
 	ARM compatible \gls{CPU} cores with their most expensive license.
@@ -387,7 +387,7 @@ that can run on that \gls{CPU}. This is especially important in consumer desktop
 	In contrast, the only operating systems that can currently be run on RISC-V is Linux along with various embedded and IOT operating systems.
 	No major commercial operating systems currently support RISC-V.
 
-	\subsection{Interpretation of results}
+	\subsection{Interpretation of results (Alexander Schmid)}
 	\label{ref:interpretation}
 	RISC-V's permissive licensing model allows for a much lower barrier to entry into the \gls{CPU} market for new designers
 	by eliminating the need to pay large upfront licensing costs.
